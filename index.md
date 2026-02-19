@@ -1,5 +1,5 @@
 ---
-layout: splash
+layout: home-genially
 title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 header:
   overlay_image: /assets/images/banniere-minecraft.jpg

@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.title }}</title>
-    {{ content_for_head }}
-    
-    <!-- CSS perso -->
-    <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
-    
-    <!-- Inclut le CSS du thème -->
-    <link rel="stylesheet" href="{{ '/assets/css/main.scss' | relative_url }}">
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+</head>
+<body>
+  <!-- Bannière -->
+  <div class="page__hero">
+    <img class="page__hero-image" src="{{ page.header.overlay_image }}" alt="Bannière">
+    <div class="logo-overlay"></div>
+  </div>
+
+  <!-- Contenu -->
+  <div class="page__content">
     {{ content }}
-  </body>
+  </div>
+</body>
 </html>

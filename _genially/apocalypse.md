@@ -2,7 +2,7 @@
 title: "Apocalypse"
 niveau: "3ème"
 image: /assets/images/apocalypse.png
-genially_url: "[https://view.genially.com/68cacffb9cd25146bd2d00e3/interactive-content-apocalypse]"
+genially_url: "https://view.genially.com/68cacffb9cd25146bd2d00e3/interactive-content-apocalypse"
 layout: single
 ---
 
@@ -14,4 +14,4 @@ Durée : 1h
 
 ---
 
-👉 [Accéder au Genially]([https://view.genially.com/68cacffb9cd25146bd2d00e3/interactive-content-apocalypse]
+👉 [Accéder au Genially](https://view.genially.com/68cacffb9cd25146bd2d00e3/interactive-content-apocalypse)

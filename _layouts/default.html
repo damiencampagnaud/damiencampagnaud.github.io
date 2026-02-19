@@ -12,11 +12,11 @@
     <h1><a href="/" style="color:white; text-decoration:none;">{{ site.title }}</a></h1>
   </header>
 
-  <nav class="site-nav" style="background:#34495e; color:white; padding:10px; text-align:center;">
-    {% for item in site.data.navigation.main %}
-      <a href="{{ item.url }}" style="color:white; margin:0 15px; text-decoration:none;">{{ item.title }}</a>
-    {% endfor %}
-  </nav>
+<nav class="cayman-nav">
+  {% for item in site.data.navigation.main %}
+    <a class="btn" href="{{ item.url }}">{{ item.title }}</a>
+  {% endfor %}
+</nav>
 
   <main>
     {{ content }}

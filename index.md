@@ -26,6 +26,7 @@ Enseignant en collège, je partage ici :
 
 ## Accès rapide aux Genially
 
+
 <div class="genially-grid">
 {% for item in site.genially %}
   <div class="genially-card">

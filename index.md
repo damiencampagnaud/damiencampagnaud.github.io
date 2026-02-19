@@ -6,15 +6,14 @@ header:
   overlay_filter: 0.4
 ---
 
-## Mes Genially interactifs
-
-<div class="genially-grid">
-{% for item in site.genially %}
-  <div class="genially-card">
-    <a href="{{ item.genially_url }}" target="_blank">
+<div class="home-genially-grid">
+  {% for item in site.genially %}
+    <a href="{{ item.genially_url }}" target="_blank" class="home-card">
       <img src="{{ item.image }}" alt="{{ item.title }}">
-      <div class="genially-title">{{ item.title }}</div>
+      <div class="home-card-overlay">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.niveau }}</p>
+      </div>
     </a>
-  </div>
-{% endfor %}
+  {% endfor %}
 </div>

@@ -67,3 +67,24 @@
     height: 220px;
   }
 }
+
+.page__hero {
+  position: relative;
+}
+
+.page__hero::after {
+  content: "";
+  position: absolute;
+  right: 60px;
+  bottom: 40px;
+  width: 160px;
+  height: 160px;
+  background-image: url('/assets/images/logoblanc.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.page__content {
+  max-width: 1400px !important;
+  width: 100% !important;
+}

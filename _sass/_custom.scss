@@ -1,0 +1,46 @@
+.genially-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .genially-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.genially-card {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.genially-card:hover {
+  transform: scale(1.02);
+}
+
+.genially-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.page__hero {
+  position: relative;
+}
+
+.page__hero::after {
+  content: "";
+  position: absolute;
+  right: 60px;
+  bottom: 40px;
+  width: 160px;
+  height: 160px;
+  background-image: url('/assets/images/logoblanc.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}

@@ -38,3 +38,15 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+.page__content {
+  max-width: 1400px !important;
+  width: 100% !important;
+}
+
+.genially-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+}

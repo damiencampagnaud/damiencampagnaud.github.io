@@ -1,29 +1,49 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} - {{ site.title }}</title>
-  <meta name="description" content="{{ site.description }}">
-  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
-</head>
-<body>
-  <header class="site-header" style="background:#2c3e50; color:white; padding:20px; text-align:center;">
-    <h1><a href="/" style="color:white; text-decoration:none;">{{ site.title }}</a></h1>
-  </header>
+<html lang="{{ site.lang | default: "fr" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<nav class="cayman-nav">
-  {% for item in site.data.navigation.main %}
-    <a class="btn" href="{{ item.url }}">{{ item.title }}</a>
-  {% endfor %}
-</nav>
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ site.description }}">
 
-  <main>
-    {{ content }}
-  </main>
+    <!-- Cayman Theme CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
-  <footer style="background:#2c3e50; color:white; text-align:center; padding:20px; margin-top:40px;">
-    &copy; {{ "now" | date: "%Y" }} - {{ site.title }}
-  </footer>
-</body>
+    <!-- Ton CSS personnalisé -->
+    <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+
+    <!-- Police Inter (comme démo Cayman moderne) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- HEADER OFFICIEL CAYMAN -->
+    <section class="page-header">
+      <h1 class="project-name">{{ site.title }}</h1>
+      <h2 class="project-tagline">{{ site.description }}</h2>
+
+      <!-- BOUTONS STYLE CAYMAN -->
+      <div class="cayman-buttons">
+        {% for item in site.data.navigation.main %}
+          <a href="{{ item.url }}" class="btn">{{ item.title }}</a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- CONTENU PAGE -->
+    <main class="main-content">
+      {{ content }}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <span class="site-footer-credits">
+        © {{ "now" | date: "%Y" }} {{ site.title }}
+      </span>
+    </footer>
+
+  </body>
 </html>

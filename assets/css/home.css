@@ -164,3 +164,31 @@ footer {
     height: 220px;
   }
 }
+
+/* ============================= */
+/* BOUTONS STYLE CAYMAN */
+/* ============================= */
+
+.cayman-nav {
+  margin-top: -30px;
+  padding-bottom: 40px;
+}
+
+.btn {
+  display: inline-block;
+  margin: 10px 8px;
+  padding: 0.75rem 1.5rem;
+  color: #155799;
+  background-color: white;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 0.3rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: rgba(255,255,255,0.85);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}

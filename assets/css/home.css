@@ -1,90 +1,104 @@
-/* ============================= */
-/*  POLICE & BASE (Cayman style) */
-/* ============================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+/* ===================================================== */
+/* RESET MINIMAL */
+/* ===================================================== */
 
 body {
-  font-family: 'Inter', sans-serif;
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   color: #2c3e50;
+  background-color: #f9fafc;
   text-align: center;
   line-height: 1.6;
-  background-color: #f9fafc;
 }
 
 h1, h2, h3 {
-  font-weight: 700;
   margin-bottom: 1rem;
+  font-weight: 700;
   text-align: center;
 }
 
-/* ============================= */
-/* HEADER CAYMAN OFFICIEL */
-/* ============================= */
+/* ===================================================== */
+/* SUPPRESSION DU HEADER CAYMAN */
+/* ===================================================== */
 
-.site-header {
-  background: linear-gradient(120deg, #155799, #159957);
-  padding: 5rem 1rem 4rem 1rem;
-  text-align: center;
+.page-header {
+  display: none !important;
+}
+
+/* ===================================================== */
+/* HEADER AVEC TA BANNIERE */
+/* ===================================================== */
+
+.custom-header {
+  background: url('/assets/images/banniere-minecraft.jpg') center/cover no-repeat;
+  padding: 6rem 1rem;
+  position: relative;
   color: white;
 }
 
-.site-header h1 {
-  margin: 0;
-  font-size: 3rem;
-  font-weight: 700;
+.custom-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
 }
 
-.site-header p {
-  margin-top: 1rem;
-  font-size: 1.2rem;
-  opacity: 0.9;
-}
-
-/* ============================= */
-/* NAVIGATION STYLE CAYMAN */
-/* ============================= */
-
-nav {
-  background-color: white;
-  padding: 1rem 0;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-nav a {
-  color: #155799;
-  text-decoration: none;
-  margin: 0 20px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-nav a:hover {
-  color: #159957;
-  transform: translateY(-2px);
-}
-
-/* ============================= */
-/* HERO IMAGE */
-/* ============================= */
-
-.page__hero {
-  background-size: cover;
-  background-position: center;
-  height: 400px;
+.header-content {
   position: relative;
-}
-
-/* ============================= */
-/* GENIALLY GRID */
-/* ============================= */
-
-.home-genially-wrapper {
-  max-width: 1200px;
+  z-index: 2;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 60px 20px;
 }
+
+.custom-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.custom-header p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+/* ===================================================== */
+/* BOUTONS NAVIGATION */
+/* ===================================================== */
+
+.cayman-buttons {
+  margin-top: 1rem;
+}
+
+.cayman-buttons .btn {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  background-color: rgba(255,255,255,0.9);
+  color: #155799;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.cayman-buttons .btn:hover {
+  background-color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+/* ===================================================== */
+/* CONTENU PRINCIPAL */
+/* ===================================================== */
+
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+/* ===================================================== */
+/* GRID GENIALLY */
+/* ===================================================== */
 
 .home-genially-grid {
   display: grid;
@@ -93,9 +107,9 @@ nav a:hover {
   margin-top: 40px;
 }
 
-/* ============================= */
-/* GENIALLY CARDS */
-/* ============================= */
+/* ===================================================== */
+/* CARTES */
+/* ===================================================== */
 
 .home-card {
   position: relative;
@@ -103,9 +117,9 @@ nav a:hover {
   border-radius: 14px;
   overflow: hidden;
   text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
   background: white;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .home-card img {
@@ -136,111 +150,33 @@ nav a:hover {
   opacity: 1;
 }
 
-/* ============================= */
+/* ===================================================== */
 /* FOOTER */
-/* ============================= */
+/* ===================================================== */
 
-footer {
+.site-footer {
   margin-top: 80px;
   padding: 40px 20px;
   background: #155799;
   color: white;
 }
 
-/* ============================= */
+/* ===================================================== */
 /* RESPONSIVE */
-/* ============================= */
+/* ===================================================== */
 
 @media (max-width: 768px) {
-  .site-header {
-    padding: 3rem 1rem;
+
+  .custom-header {
+    padding: 4rem 1rem;
   }
 
-  .site-header h1 {
+  .custom-header h1 {
     font-size: 2rem;
   }
 
   .home-card img {
     height: 220px;
   }
-}
 
-/* ============================= */
-/* HEADER AVEC IMAGE UNIQUE */
-/* ============================= */
-
-.custom-header {
-  background: url('/assets/images/banniere-minecraft.jpg') no-repeat center center;
-  background-size: cover;
-  padding: 6rem 1rem 5rem 1rem;
-  text-align: center;
-  color: white;
-  position: relative;
-}
-
-/* assombrissement léger pour lisibilité */
-.custom-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.header-content {
-  position: relative;
-  z-index: 2;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.custom-header h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.custom-header p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-/* ============================= */
-/* BOUTONS STYLE CAYMAN */
-/* ============================= */
-
-.btn {
-  display: inline-block;
-  margin: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: white;
-  color: #155799;
-  border-radius: 0.3rem;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease-in-out;
-}
-
-.btn:hover {
-  background-color: rgba(255,255,255,0.85);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-}
-
-/* ============================= */
-/* HEADER CAYMAN FORCÉ */
-/* ============================= */
-
-.page-header {
-  background: linear-gradient(120deg, #155799, #159957) !important;
-  padding: 5rem 1rem 4rem 1rem !important;
-  text-align: center;
-}
-
-.page-header h1 {
-  font-size: 3rem !important;
-  font-weight: 700;
-}
-
-.page-header .project-tagline {
-  font-size: 1.2rem !important;
-  opacity: 0.9;
 }

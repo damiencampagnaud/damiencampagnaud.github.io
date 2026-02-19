@@ -5,3 +5,7 @@ plugins:
   - jekyll-include-cache
 
 minimal_mistakes_skin: mint
+author:
+  name: "Damien Campagnaud"
+  bio: "Enseignant en SVT | Pédagogie active | Projets scientifiques"
+  location: "France"

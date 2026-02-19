@@ -13,3 +13,11 @@ collections:
   genially:
     output: true
     permalink: /genially/:name/
+sass:
+  style: compressed
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      css: /assets/css/custom.css

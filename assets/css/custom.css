@@ -1,0 +1,40 @@
+.genially-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.genially-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.genially-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.genially-card h3 {
+  margin: 15px 10px 5px 10px;
+}
+
+.genially-card a {
+  text-decoration: none;
+  color: #2c7a4b;
+}
+
+.btn-secondaire {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #2c7a4b;
+  color: white !important;
+  border-radius: 5px;
+  font-size: 14px;
+}

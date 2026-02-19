@@ -1,18 +1,12 @@
 ---
 layout: splash
+title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
+
 header:
   overlay_image: /assets/images/banniere-minecraft.jpg
   overlay_filter: 0.4
   overlay_color: "#000"
-  actions:
-    - label: ""
-      url: ""
-title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
-header:
-  overlay_image: /assets/images/banniere-minecraft.jpg
-  overlay_filter: 0.4
 ---
-
 # Sciences de la Vie et de la Terre
 
 Enseignant en collège, je partage ici :
@@ -25,7 +19,6 @@ Enseignant en collège, je partage ici :
 ---
 
 ## Accès rapide aux Genially
-
 
 <div class="genially-grid">
 {% for item in site.genially %}

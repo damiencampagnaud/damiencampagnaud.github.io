@@ -38,3 +38,19 @@
   border-radius: 5px;
   font-size: 14px;
 }
+.niveau-section {
+  margin-bottom: 40px;
+}
+
+.genially-card {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-left: 4px solid #2c7a4b;
+  background: #f9fdfb;
+  border-radius: 6px;
+}
+
+.genially-card a {
+  display: inline-block;
+  margin-top: 5px;
+}

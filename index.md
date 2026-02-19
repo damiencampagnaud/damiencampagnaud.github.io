@@ -15,3 +15,5 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   </a>
   {% endfor %}
 </div>
+
+<link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">

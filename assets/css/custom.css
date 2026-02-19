@@ -1,17 +1,20 @@
 .genially-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
   margin-top: 30px;
 }
 
 .genially-card {
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  text-align: center;
-  padding-bottom: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.genially-card:hover {
+  transform: translateY(-5px);
 }
 
 .genially-card img {
@@ -20,34 +23,13 @@
   object-fit: cover;
 }
 
-.genially-card h3 {
-  margin: 15px 10px 5px 10px;
-}
-
-.genially-card a {
-  text-decoration: none;
-  color: #2c7a4b;
-}
-
-.btn-secondaire {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 6px 12px;
-  background: #2c7a4b;
-  color: white !important;
-  border-radius: 5px;
-  font-size: 14px;
-}
-.niveau-section {
-  margin-bottom: 40px;
-}
-
-.genially-card {
+.genially-card-content {
   padding: 15px;
-  margin-bottom: 15px;
-  border-left: 4px solid #2c7a4b;
-  background: #f9fdfb;
-  border-radius: 6px;
+}
+
+.genially-card-content h3 {
+  margin-top: 0;
+  color: #2c7a4b;
 }
 
 .genially-card a {

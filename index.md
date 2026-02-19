@@ -21,8 +21,7 @@ Enseignant en collège, je partage ici :
 
 ---
 layout: single
-title: ""
-permalink: /
+title: "Apocalypse"
 ---
 
 <div class="genially-grid">
@@ -32,8 +31,6 @@ permalink: /
       <img src="{{ item.image }}">
     </a>
     <div class="genially-card-content">
-      <h3><a href="{{ item.genially_url }}">{{ item.title }}</a></h3>
-    </div>
   </div>
 {% endfor %}
 </div>

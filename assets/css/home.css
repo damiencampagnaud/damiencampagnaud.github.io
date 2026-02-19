@@ -108,7 +108,7 @@ h1, h2, h3 {
 }
 
 /* ===================================================== */
-/* CARTES */
+/* CARTES GENIALLY */
 /* ===================================================== */
 
 .home-card {
@@ -122,34 +122,70 @@ h1, h2, h3 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Image */
 .home-card img {
   width: 100%;
   height: 280px;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s ease;
 }
 
+/* Overlay sombre sur toute la carte */
+.home-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+}
+
+/* Contenu centré */
 .home-card-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
+  text-align: center;
   opacity: 0;
+  z-index: 2;
   transition: opacity 0.3s ease;
 }
 
+/* Titre */
+.home-card-overlay h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Niveau */
+.home-card-overlay p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Hover */
 .home-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 14px 35px rgba(0,0,0,0.25);
 }
 
+.home-card:hover img {
+  transform: scale(1.05);
+}
+
+.home-card:hover::after {
+  background: rgba(0, 0, 0, 0.55);
+}
+
 .home-card:hover .home-card-overlay {
   opacity: 1;
 }
-
 /* ===================================================== */
 /* FOOTER */
 /* ===================================================== */

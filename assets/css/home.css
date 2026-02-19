@@ -1,14 +1,14 @@
 /* ===== Netflix pédagogique pour Genially ===== */
 
-/* Bannière */
-.page__hero {
+/* Bannière avec logo à droite */
+.splash-header {
   position: relative;
   height: 400px;
   background-size: cover !important;
   background-position: center !important;
 }
 
-.page__hero::after {
+.splash-header::after {
   content: "";
   position: absolute;
   right: 40px;

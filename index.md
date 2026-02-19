@@ -1,15 +1,17 @@
 ---
 layout: home
-author_profile: false
 title: ""
+header:
+  overlay_image: /assets/images/banniere-minecraft.jpg
+  overlay_filter: 0.4
 ---
 
-# Bienvenue
+# Sciences de la Vie et de la Terre
 
 Enseignant en collège, je partage ici :
 
-- 📚 Mes ressources pédagogiques
-- 🧪 Mes projets SVT
+- 🌿 Mes ressources pédagogiques
+- 🧬 Mes projets scientifiques
 - 🎮 Mes Genially interactifs
 - 📄 Mes publications
 

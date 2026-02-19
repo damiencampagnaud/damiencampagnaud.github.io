@@ -9,15 +9,6 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 
 <main style="max-width:1400px; margin:0 auto; padding:40px;">
 
-  <h1>Sciences de la Vie et de la Terre</h1>
-  <p>Enseignant en collège, je partage ici :</p>
-  <ul>
-    <li>🌿 Mes ressources pédagogiques</li>
-    <li>🧬 Mes projets scientifiques</li>
-    <li>🎮 Mes Genially interactifs</li>
-    <li>📄 Mes publications</li>
-  </ul>
-
   <h2>Accès rapide aux Genially</h2>
 
   <div class="home-genially-grid">

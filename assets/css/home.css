@@ -166,45 +166,46 @@ footer {
 }
 
 /* ============================= */
-/* HEADER AVEC BANNIERE */
+/* HEADER AVEC IMAGE UNIQUE */
 /* ============================= */
 
 .custom-header {
-  position: relative;
-  background: 
-    linear-gradient(120deg, rgba(21,87,153,0.85), rgba(21,153,87,0.85)),
-    url('/assets/images/banniere-minecraft.jpg');
+  background: url('/assets/images/banniere-minecraft.jpg') no-repeat center center;
   background-size: cover;
-  background-position: center;
   padding: 6rem 1rem 5rem 1rem;
   text-align: center;
   color: white;
+  position: relative;
 }
 
-.header-overlay {
+/* assombrissement léger pour lisibilité */
+.custom-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
   max-width: 900px;
   margin: 0 auto;
 }
 
-.project-name {
+.custom-header h1 {
   font-size: 3rem;
-  font-weight: 700;
   margin-bottom: 1rem;
 }
 
-.project-tagline {
+.custom-header p {
   font-size: 1.2rem;
-  opacity: 0.95;
   margin-bottom: 2rem;
 }
 
 /* ============================= */
 /* BOUTONS STYLE CAYMAN */
 /* ============================= */
-
-.cayman-buttons {
-  margin-top: 1rem;
-}
 
 .btn {
   display: inline-block;

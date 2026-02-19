@@ -12,6 +12,8 @@ L'élève se retrouve plongé dans une apocalypse de zombies et doit en trouver 
 
 Durée : 1h
 
+Pré-requis : 12 ans (attention, présence d'un screamer!)
+
 ---
 
 👉 [Accéder au Genially](https://view.genially.com/68cacffb9cd25146bd2d00e3/interactive-content-apocalypse)

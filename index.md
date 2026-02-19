@@ -21,16 +21,16 @@ Enseignant en collège, je partage ici :
 
 ---
 layout: single
-title: "Apocalypse"
+title: ""
+permalink: /
 ---
 
 <div class="genially-grid">
 {% for item in site.genially %}
   <div class="genially-card">
-    <a href="{{ item.genially_url }}">
-      <img src="{{ item.image }}">
+    <a href="{{ item.genially_url }}" target="_blank">
+      <img src="{{ item.image }}" alt="{{ item.title }}">
     </a>
-    <div class="genially-card-content">
   </div>
 {% endfor %}
 </div>

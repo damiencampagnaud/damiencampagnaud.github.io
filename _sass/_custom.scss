@@ -1,12 +1,9 @@
 .genially-grid {
-  width: 100%;
-}
-
-.genially-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
   margin-top: 40px;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -16,14 +13,7 @@
 }
 
 .genially-card {
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease;
-}
-
-.genially-card:hover {
-  transform: scale(1.02);
+  width: 100%;
 }
 
 .genially-card img {

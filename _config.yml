@@ -9,3 +9,7 @@ author:
   name: "Damien Campagnaud"
   bio: "Enseignant en SVT | Pédagogie active | Projets scientifiques"
   location: "France"
+collections:
+  genially:
+    output: true
+    permalink: /genially/:name/

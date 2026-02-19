@@ -1,11 +1,11 @@
 ---
 layout: splash
+classes: wide
 title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 
 header:
   overlay_image: /assets/images/banniere-minecraft.jpg
   overlay_filter: 0.4
-  overlay_color: "#000"
 ---
 # Sciences de la Vie et de la Terre
 

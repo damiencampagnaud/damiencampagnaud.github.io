@@ -1,6 +1,6 @@
 title: Damien Campagnaud
 description: Ressources pédagogiques et projets
-remote_theme: pages-themes/cayman@v0.3.0  # thème officiel GitHub Pages
+remote_theme: pages-themes/cayman # version officielle supportée par GitHub Pages
 plugins:
   - jekyll-feed
 
@@ -8,6 +8,3 @@ collections:
   genially:
     output: true
     permalink: /genially/:name/
-
-sass:
-  style: compressed

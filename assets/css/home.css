@@ -216,3 +216,19 @@ h1, h2, h3 {
   }
 
 }
+
+/* ======================================= */
+/* FORCE TITRE BLANC DANS LES CARTES */
+/* ======================================= */
+
+.home-card-overlay h3 {
+  color: white !important;
+}
+
+.home-card-overlay p {
+  color: white !important;
+}
+
+.home-card-overlay h3 {
+  text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}

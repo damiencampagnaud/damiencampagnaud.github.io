@@ -1,1 +1,29 @@
-<link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-header" style="background:#2c3e50; color:white; padding:20px; text-align:center;">
+    <h1><a href="/" style="color:white; text-decoration:none;">{{ site.title }}</a></h1>
+  </header>
+
+  <nav class="site-nav" style="background:#34495e; color:white; padding:10px; text-align:center;">
+    {% for item in site.data.navigation.main %}
+      <a href="{{ item.url }}" style="color:white; margin:0 15px; text-decoration:none;">{{ item.title }}</a>
+    {% endfor %}
+  </nav>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer style="background:#2c3e50; color:white; text-align:center; padding:20px; margin-top:40px;">
+    &copy; {{ "now" | date: "%Y" }} - {{ site.title }}
+  </footer>
+</body>
+</html>

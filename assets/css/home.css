@@ -193,10 +193,20 @@ footer {
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* ============================= */
-/* ÉCRASEMENT FORCÉ */
-/* ============================= */
+/* ===== FORCE HEADER CAYMAN ===== */
 
-header.page-header {
+.page-header {
   background: linear-gradient(120deg, #155799, #159957) !important;
+  padding: 5rem 1rem 4rem 1rem !important;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 3rem !important;
+  font-weight: 700;
+}
+
+.page-header .project-tagline {
+  font-size: 1.2rem !important;
+  opacity: 0.9;
 }

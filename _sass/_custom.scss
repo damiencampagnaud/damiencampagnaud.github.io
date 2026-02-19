@@ -1,4 +1,8 @@
 .genially-grid {
+  width: 100%;
+}
+
+.genially-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px;

@@ -2,7 +2,7 @@
 title: "Qui a tué Monsieur Lapin ?"
 niveau: "3ème"
 image: /assets/images/quiatuemonsieurlapin.png
-genially_url: "[https://view.genially.com/68cacf4d479c6d423bd1ae80/interactive-content-qui-a-tue-monsieur-lapin]"
+genially_url: "https://view.genially.com/68cacf4d479c6d423bd1ae80/interactive-content-qui-a-tue-monsieur-lapin"
 layout: single
 ---
 
@@ -14,5 +14,5 @@ Durée : 1h
 
 ---
 
-👉 [Accéder au Genially]([https://view.genially.com/68cacffb9cd25146bd2d00e3/interactive-content-apocalypse]
+👉 [Accéder au Genially](https://view.genially.com/68cacffb9cd25146bd2d00e3/interactive-content-apocalypse])
 

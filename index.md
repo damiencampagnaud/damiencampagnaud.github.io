@@ -2,7 +2,6 @@
 layout: splash
 classes:
   - wide
-  - full
 title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 
 header:

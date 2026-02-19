@@ -1,9 +1,8 @@
 .genially-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px;
   margin-top: 40px;
-  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -13,7 +12,13 @@
 }
 
 .genially-card {
-  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.genially-card:hover {
+  transform: scale(1.03);
 }
 
 .genially-card img {
@@ -42,15 +47,4 @@
 .page__content {
   max-width: 1400px !important;
   width: 100% !important;
-}
-
-.genially-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  width: 100%;
-}
-
-.genially-card {
-  background: red;
 }

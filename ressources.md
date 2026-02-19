@@ -1,23 +1,22 @@
 ---
-layout: single
+layout: default
 title: "Ressources"
 permalink: /ressources/
 ---
 
-## Index des niveaux
+<h1>Index des niveaux</h1>
 
-- [6ème](#6eme)
-- [5ème](#5eme)
-- [4ème](#4eme)
-- [3ème](#3eme)
-
----
+<ul>
+  <li><a href="#6eme">6ème</a></li>
+  <li><a href="#5eme">5ème</a></li>
+  <li><a href="#4eme">4ème</a></li>
+  <li><a href="#3eme">3ème</a></li>
+</ul>
 
 <input type="text" id="searchBox" placeholder="Rechercher un Genially..." style="width:100%;padding:10px;margin:20px 0;">
 <div id="searchResults"></div>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
-
 <script>
 fetch('/search.json')
   .then(response => response.json())
@@ -38,10 +37,10 @@ fetch('/search.json')
       results.forEach(result => {
         const match = data.find(d => d.url === result.ref)
         output += `
-          <div class="genially-card">
+          <div class="genially-card" style="border:1px solid #ddd; padding:15px; margin-bottom:10px; border-radius:10px;">
             <h3>${match.title}</h3>
             <p>${match.niveau}</p>
-            <a href="${match.genially_url}">🎮 Ouvrir le Genially</a><br>
+            <a href="${match.genially_url}" target="_blank">🎮 Ouvrir le Genially</a><br>
             <a href="${match.url}">📄 Voir la ressource</a>
           </div>
         `
@@ -58,10 +57,10 @@ fetch('/search.json')
 <div id="6eme" class="niveau-section">
 {% for item in site.genially %}
 {% if item.niveau == "6ème" %}
-  <div class="genially-card searchable">
+  <div class="genially-card">
     <h3>{{ item.title }}</h3>
     <p>{{ item.niveau }}</p>
-    <a href="{{ item.genially_url }}">🎮 Ouvrir le Genially</a><br>
+    <a href="{{ item.genially_url }}" target="_blank">🎮 Ouvrir le Genially</a><br>
     <a href="{{ item.url }}">📄 Voir la ressource</a>
   </div>
 {% endif %}
@@ -74,10 +73,10 @@ fetch('/search.json')
 <div id="5eme" class="niveau-section">
 {% for item in site.genially %}
 {% if item.niveau == "5ème" %}
-  <div class="genially-card searchable">
+  <div class="genially-card">
     <h3>{{ item.title }}</h3>
     <p>{{ item.niveau }}</p>
-    <a href="{{ item.genially_url }}">🎮 Ouvrir le Genially</a><br>
+    <a href="{{ item.genially_url }}" target="_blank">🎮 Ouvrir le Genially</a><br>
     <a href="{{ item.url }}">📄 Voir la ressource</a>
   </div>
 {% endif %}
@@ -90,10 +89,10 @@ fetch('/search.json')
 <div id="4eme" class="niveau-section">
 {% for item in site.genially %}
 {% if item.niveau == "4ème" %}
-  <div class="genially-card searchable">
+  <div class="genially-card">
     <h3>{{ item.title }}</h3>
     <p>{{ item.niveau }}</p>
-    <a href="{{ item.genially_url }}">🎮 Ouvrir le Genially</a><br>
+    <a href="{{ item.genially_url }}" target="_blank">🎮 Ouvrir le Genially</a><br>
     <a href="{{ item.url }}">📄 Voir la ressource</a>
   </div>
 {% endif %}
@@ -106,24 +105,12 @@ fetch('/search.json')
 <div id="3eme" class="niveau-section">
 {% for item in site.genially %}
 {% if item.niveau == "3ème" %}
-  <div class="genially-card searchable">
+  <div class="genially-card">
     <h3>{{ item.title }}</h3>
     <p>{{ item.niveau }}</p>
-    <a href="{{ item.genially_url }}">🎮 Ouvrir le Genially</a><br>
+    <a href="{{ item.genially_url }}" target="_blank">🎮 Ouvrir le Genially</a><br>
     <a href="{{ item.url }}">📄 Voir la ressource</a>
   </div>
 {% endif %}
 {% endfor %}
 </div>
-
-<script>
-document.getElementById("searchInput").addEventListener("keyup", function() {
-  let filter = this.value.toLowerCase();
-  let cards = document.querySelectorAll(".searchable");
-
-  cards.forEach(function(card) {
-    let text = card.innerText.toLowerCase();
-    card.style.display = text.includes(filter) ? "" : "none";
-  });
-});
-</script>

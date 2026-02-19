@@ -1,19 +1,16 @@
 title: Damien Campagnaud
 description: Ressources pédagogiques et projets
-remote_theme: mmistakes/minimal-mistakes
-plugins:
-  - jekyll-include-cache
-  - jekyll-feed
+theme: jekyll-theme-portfolio
 
-minimal_mistakes_skin: mint
 author:
   name: "Damien Campagnaud"
   bio: "Enseignant en SVT | Pédagogie active | Projets scientifiques"
   location: "France"
-  
+
 collections:
   genially:
     output: true
     permalink: /genially/:name/
+
 sass:
   style: compressed

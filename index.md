@@ -1,20 +1,21 @@
 ---
 layout: home
-title: Accueil
+author_profile: false
+title: ""
 ---
 
-Bienvenue sur mon site pédagogique.
+# Bienvenue
 
-Je partage ici :
+Enseignant en collège, je partage ici :
 
-- Mes ressources SVT
-- Mes Genially
-- Mes projets avec les élèves
-- Mes publications
+- 📚 Mes ressources pédagogiques
+- 🧪 Mes projets SVT
+- 🎮 Mes Genially interactifs
+- 📄 Mes publications
 
 ---
 
 ## Accès rapide
 
-- [Ressources](ressources.md)
-- [Contact](contact.md)
+👉 [Ressources](/ressources/)  
+👉 [Contact](/contact/)

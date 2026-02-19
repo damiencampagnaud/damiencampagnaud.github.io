@@ -1,90 +1,52 @@
-/* Supprime les contraintes du thème */
-.page__content {
-  max-width: 100% !important;
-  padding: 0 40px;
-}
-
-/* Wrapper général */
+/* Grille Netflix Genially */
 .home-genially-wrapper {
-  margin-top: 60px;
-  margin-bottom: 80px;
+  margin: 60px auto;
 }
 
-/* GRILLE 2 PAR LIGNE */
 .home-genially-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
 
-/* Carte */
 .home-card {
   position: relative;
-  display: block;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
-  text-decoration: none;
   transition: transform 0.3s ease;
+  display: block;
+}
+
+.home-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.home-card-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .home-card:hover {
   transform: scale(1.05);
 }
 
-/* Image */
-.home-card img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-}
-
-/* Overlay sombre */
-.home-card-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  color: white;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-/* Affiche overlay au hover */
 .home-card:hover .home-card-overlay {
   opacity: 1;
 }
 
-/* Responsive mobile */
 @media (max-width: 768px) {
   .home-genially-grid {
     grid-template-columns: 1fr;
   }
-
   .home-card img {
     height: 220px;
   }
-}
-
-.page__hero {
-  position: relative;
-}
-
-.page__hero::after {
-  content: "";
-  position: absolute;
-  right: 60px;
-  bottom: 40px;
-  width: 160px;
-  height: 160px;
-  background-image: url('/assets/images/logoblanc.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.page__content {
-  max-width: 1400px !important;
-  width: 100% !important;
 }

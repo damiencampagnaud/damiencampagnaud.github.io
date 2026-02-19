@@ -28,3 +28,19 @@
   object-fit: cover;
   display: block;
 }
+
+.page__hero--overlay {
+  position: relative;
+}
+
+.page__hero--overlay::after {
+  content: "";
+  position: absolute;
+  right: 40px;
+  bottom: 20px;
+  width: 140px;
+  height: 140px;
+  background-image: url('/assets/images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}

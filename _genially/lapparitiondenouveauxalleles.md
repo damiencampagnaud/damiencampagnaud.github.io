@@ -9,12 +9,12 @@ pdf_files:
 layout: single
 ---
 
-## Description
+## <strong>Description</strong>
 
 L'élève parcours une petite histoire qui retrace le commencement de l'animé populaire My Hero Academia. Il abordera les notions de mutations, de tableaux de croisements et, comme son nom l'indique, de l'apparition de nouveaux allèles dans une population.
 
-Durée : 1h
+<strong>Durée :</strong> 1h
 
-Pré-requis : notion de caractère, phénotype, chromosome, gène, génotype, allèle, gamètes, gonades
+<strong>Pré-requis :</strong> notion de caractère, phénotype, chromosome, gène, génotype, allèle, gamètes, gonades
 
 ---

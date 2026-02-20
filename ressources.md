@@ -27,7 +27,7 @@ permalink: /ressources/
 }
 
 #searchResults {
-  margin-top:25px;
+  margin-top:30px;
 }
 
 /* ================= NIVEAUX ================= */
@@ -58,13 +58,11 @@ permalink: /ressources/
   gap:20px;
 }
 
-/* Carte normale */
 .genially-card {
   width:calc(33.333% - 20px);
   transition:0.3s;
 }
 
-/* Carte ouverte → pleine largeur */
 .genially-card.expanded {
   width:100%;
 }
@@ -129,31 +127,24 @@ permalink: /ressources/
   opacity:0.9;
 }
 
-/* ================= SEARCH CARD STYLE ================= */
-
-.search-card {
-  background:white;
-  padding:20px;
-  margin-bottom:20px;
-  border-radius:12px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.08);
-}
-
 </style>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 
 <script>
+let storeData = []
+
 fetch('/search.json')
   .then(response => response.json())
   .then(data => {
+
+    storeData = data
 
     const idx = lunr(function () {
       this.ref('url')
       this.field('title')
       this.field('niveau')
       this.field('content')
-
       data.forEach(doc => this.add(doc))
     })
 
@@ -167,17 +158,33 @@ fetch('/search.json')
       }
 
       const results = idx.search(query)
+
       let output = ""
 
       results.forEach(result => {
-        const match = data.find(d => d.url === result.ref)
+
+        const match = storeData.find(d => d.url === result.ref)
 
         output += `
-          <div class="search-card">
-            <h3>${match.title}</h3>
-            <p>${match.niveau}</p>
-            <a href="${match.genially_url}" target="_blank" class="card-btn">🎮 Ouvrir le Genially</a>
-            <a href="${match.pdf_url}" target="_blank" class="card-btn secondary">📄 Fiche activité PDF</a>
+          <div class="genially-card expanded">
+            <div class="genially-card-front">
+              <img src="${match.image}" alt="${match.title}">
+              <div class="card-overlay">
+                <h3>${match.title}</h3>
+                <p>${match.niveau}</p>
+              </div>
+            </div>
+
+            <div class="genially-detail" style="display:block;">
+              ${match.content}
+              <br><br>
+              <a href="${match.genially_url}" target="_blank" class="card-btn">
+                🎮 Ouvrir le Genially
+              </a>
+              <a href="${match.pdf_url}" target="_blank" class="card-btn secondary">
+                📄 Fiche activité PDF
+              </a>
+            </div>
           </div>
         `
       })
@@ -185,6 +192,7 @@ fetch('/search.json')
       document.getElementById('searchResults').innerHTML = output
 
     })
+
   })
 
 /* ================= NIVEAU TOGGLE ================= */
@@ -200,7 +208,6 @@ function toggleCard(element) {
 
   const card = element.closest('.genially-card');
 
-  // ferme toutes les autres cartes
   document.querySelectorAll('.genially-card').forEach(c => {
     if (c !== card) {
       c.classList.remove('expanded');

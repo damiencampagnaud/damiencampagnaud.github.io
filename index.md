@@ -3,9 +3,6 @@ layout: default
 title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 ---
 
-<!-- Favicon -->
-<link rel="icon" href="{{ '/assets/images/Logo.png' | relative_url }}" type="image/png">
-
 <style>
 /* ================= MOBILE ALIGN FIX ================= */
 @media (max-width:768px) {

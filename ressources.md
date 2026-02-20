@@ -151,7 +151,6 @@ fetch('/search.json')
     document.getElementById('searchBox').addEventListener('input', function() {
 
       const query = this.value.trim()
-
       const resultsContainer = document.getElementById('searchResults')
       resultsContainer.innerHTML = ""
 
@@ -168,7 +167,6 @@ fetch('/search.json')
         if(originalCard){
 
           const clone = originalCard.cloneNode(true)
-
           clone.classList.add("expanded")
           clone.style.width = "100%"
 
@@ -182,14 +180,10 @@ fetch('/search.json')
 
   })
 
-/* ================= NIVEAU TOGGLE ================= */
-
 function toggleNiveau(element) {
   const content = element.nextElementSibling;
   content.classList.toggle("open");
 }
-
-/* ================= CARD TOGGLE ================= */
 
 function toggleCard(element) {
 
@@ -239,12 +233,19 @@ function toggleCard(element) {
             <div class="genially-detail">
               {{ item.content }}
               <br><br>
+
               <a href="{{ item.genially_url }}" target="_blank" class="card-btn">
                 🎮 Ouvrir le Genially
               </a>
-              <a href="{{ item.pdf_url }}" target="_blank" class="card-btn secondary">
-                📄 Fiche activité PDF
-              </a>
+
+              {% if item.pdf_files %}
+                {% for pdf in item.pdf_files %}
+                  <a href="{{ pdf.url }}" target="_blank" class="card-btn secondary">
+                    📄 {{ pdf.name }}
+                  </a>
+                {% endfor %}
+              {% endif %}
+
             </div>
 
           </div>

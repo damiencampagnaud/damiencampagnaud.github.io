@@ -64,7 +64,7 @@ fetch('/search.json')
       {% for item in site.genially %}
         {% if item.niveau == niveau %}
 
-          <div class="genially-card">
+          <div class="genially-card" data-title="{{ item.title }}">
 
             <div class="genially-card-front" onclick="toggleCard(this)">
               <img src="{{ item.image }}" alt="{{ item.title }}">
@@ -74,10 +74,13 @@ fetch('/search.json')
               </div>
             </div>
 
-            <div class="genially-card-back">
-              {{ item.content }}
-              <a href="{{ item.genially_url }}" target="_blank" class="card-btn">🎮 Ouvrir le Genially</a>
-            </div>
+            <div class="genially-detail">
+  <div class="genially-detail-content">
+    {{ item.content }}
+    <a href="{{ item.genially_url }}" target="_blank" class="card-btn">🎮 Ouvrir le Genially</a>
+    <a href="{{ item.pdf_url }}" target="_blank" class="card-btn secondary">📄 Fiche activité PDF</a>
+  </div>
+</div>
 
           </div>
 
@@ -99,7 +102,15 @@ function toggleNiveau(element) {
 }
 
 function toggleCard(element) {
-  const card = element.parentElement;
-  card.classList.toggle("expanded");
+
+  const card = element.closest('.genially-card');
+  const detail = card.querySelector('.genially-detail');
+
+  // Ferme toutes les autres
+  document.querySelectorAll('.genially-detail').forEach(d => {
+    if (d !== detail) d.classList.remove('open');
+  });
+
+  detail.classList.toggle("open");
 }
 </script>

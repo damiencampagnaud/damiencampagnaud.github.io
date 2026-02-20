@@ -111,7 +111,7 @@ permalink: /ressources/
   display:block;
 }
 
-/* ================= BUTTONS ================= */
+/* ================= BUTTONS (FIX CAYMAN PROPRE) ================= */
 
 .button-wrapper {
   margin-top:20px;
@@ -121,24 +121,36 @@ permalink: /ressources/
   gap:15px;
 }
 
-.card-btn {
-  padding:10px 18px;
+/* On écrase totalement le style du thème Cayman */
+.genially-detail .button-wrapper a.card-btn {
+  all: unset;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  height:44px;
+  padding:0 22px;
   border-radius:8px;
+
   background:#159957;
   color:white;
-  text-decoration:none;
   font-weight:bold;
+  font-size:15px;
+  text-decoration:none;
+  cursor:pointer;
+
+  box-sizing:border-box;
 }
 
-.card-btn.secondary {
+.genially-detail .button-wrapper a.card-btn.secondary {
   background:#3b82f6;
 }
 
-.card-btn:hover {
+.genially-detail .button-wrapper a.card-btn:hover {
   opacity:0.9;
 }
 
-/* ================= MOBILE FIX ================= */
+/* ================= MOBILE ================= */
 
 @media (max-width:768px) {
 
@@ -258,11 +270,15 @@ function toggleCard(element) {
 
               <div class="button-wrapper">
 
-                <a href="{{ item.genially_url }}" target="_blank" class="card-btn">🎮 Ouvrir le Genially</a>
+                <a href="{{ item.genially_url }}" target="_blank" class="card-btn">
+                  🎮 Ouvrir le Genially
+                </a>
 
                 {% if item.pdf_files %}
                   {% for pdf in item.pdf_files %}
-                    <a href="{{ pdf.url }}" target="_blank" class="card-btn secondary">📄 {{ pdf.name }}</a>
+                    <a href="{{ pdf.url }}" target="_blank" class="card-btn secondary">
+                      📄 {{ pdf.name }}
+                    </a>
                   {% endfor %}
                 {% endif %}
 

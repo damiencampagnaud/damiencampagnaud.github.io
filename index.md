@@ -23,3 +23,15 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   </div>
 
 </main>
+
+/* ===== FIX MOBILE CENTRAGE ===== */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+  }
+
+  .card {
+    width: 92% !important;
+  }
+}

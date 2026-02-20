@@ -20,6 +20,7 @@ permalink: /ressources/
 
 #searchBox {
   width:60%;
+  max-width:500px;
   padding:12px;
   border-radius:8px;
   border:1px solid #ccc;
@@ -56,15 +57,18 @@ permalink: /ressources/
   display:flex;
   flex-wrap:wrap;
   gap:20px;
+  justify-content:center;
 }
 
 .genially-card {
-  width:calc(33.333% - 20px);
+  flex: 1 1 300px;
+  max-width:350px;
   transition:0.3s;
 }
 
 .genially-card.expanded {
-  width:100%;
+  flex: 1 1 100%;
+  max-width:100%;
 }
 
 /* ================= FRONT ================= */
@@ -100,6 +104,7 @@ permalink: /ressources/
   margin-top:15px;
   border-radius:12px;
   box-shadow:0 6px 18px rgba(0,0,0,0.1);
+  text-align:center;
 }
 
 .genially-card.expanded .genially-detail {
@@ -108,9 +113,15 @@ permalink: /ressources/
 
 /* ================= BUTTONS ================= */
 
+.button-wrapper {
+  margin-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px;
+}
+
 .card-btn {
-  display:inline-block;
-  margin:10px 10px 0 0;
   padding:10px 18px;
   border-radius:8px;
   background:#159957;
@@ -127,19 +138,30 @@ permalink: /ressources/
   opacity:0.9;
 }
 
+/* ================= MOBILE FIX ================= */
+
+@media (max-width:768px) {
+
+  #searchBox {
+    width:90%;
+  }
+
+  .genially-card {
+    flex:1 1 100%;
+    max-width:100%;
+  }
+
+}
+
 </style>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 
 <script>
 
-let indexData = []
-
 fetch('/search.json')
   .then(response => response.json())
   .then(data => {
-
-    indexData = data
 
     const idx = lunr(function () {
       this.ref('url')
@@ -168,7 +190,7 @@ fetch('/search.json')
 
           const clone = originalCard.cloneNode(true)
           clone.classList.add("expanded")
-          clone.style.width = "100%"
+          clone.style.maxWidth = "100%"
 
           resultsContainer.appendChild(clone)
 
@@ -231,20 +253,24 @@ function toggleCard(element) {
             </div>
 
             <div class="genially-detail">
+
               {{ item.content }}
-              <br><br>
 
-              <a href="{{ item.genially_url }}" target="_blank" class="card-btn">
-                🎮 Ouvrir le Genially
-              </a>
+              <div class="button-wrapper">
 
-              {% if item.pdf_files %}
-                {% for pdf in item.pdf_files %}
-                  <a href="{{ pdf.url }}" target="_blank" class="card-btn secondary">
-                    📄 {{ pdf.name }}
-                  </a>
-                {% endfor %}
-              {% endif %}
+                <a href="{{ item.genially_url }}" target="_blank" class="card-btn">
+                  🎮 Ouvrir le Genially
+                </a>
+
+                {% if item.pdf_files %}
+                  {% for pdf in item.pdf_files %}
+                    <a href="{{ pdf.url }}" target="_blank" class="card-btn secondary">
+                      📄 {{ pdf.name }}
+                    </a>
+                  {% endfor %}
+                {% endif %}
+
+              </div>
 
             </div>
 

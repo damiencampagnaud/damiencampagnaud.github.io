@@ -9,12 +9,12 @@ pdf_files:
 layout: single
 ---
 
-## Description
+## <strong>Description</strong>
 
 Une enquête pseudo-policière qui permet à l'élève d'aborder les notions de caryotype et d'anomalie chromosomique.
 
-Durée : 1h
+<strong>Durée :</strong> 1h
 
-Pré-requis : notion de caractère, phénotype, chromosome
+<strong>Pré-requis :</strong> notion de caractère, phénotype, chromosome
 
 ---

@@ -17,3 +17,4 @@ Pré-requis : 12 ans (attention, présence d'un screamer!)
 ---
 
 👉 [Accéder au Genially](https://view.genially.com/68cacffb9cd25146bd2d00e3/interactive-content-apocalypse)
+👉 [Activité en PDF](https://drive.google.com/file/d/1XiP-vAPf0CIPNCC6QCdpz1yGwQIqXRer/view?usp=drive_link) (https://drive.google.com/file/d/1kYiEAn8Swd_KVYkQuWCzXj2DcQszEGLt/view?usp=sharing)

@@ -17,4 +17,4 @@ Pré-requis : notion de caractère, phénotype, chromosome, gène, génotype, al
 ---
 
 👉 [Accéder au Genially](https://view.genially.com/68cacf6d9cd25146bd2c928f/interactive-content-the-emergence-of-new-alleles)
-
+👉 [Activité en PDF](https://drive.google.com/file/d/1iFYeety2Jf8drsG6qxkDnxwXtV4dlsV1/view?usp=sharing)

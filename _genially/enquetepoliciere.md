@@ -17,3 +17,5 @@ Pré-requis : WIP
 ---
 
 👉 [Accéder au Genially](https://view.genially.com/68cacfd3b01fff97f1e13b52/interactive-content-enquete-policiere-ndegree12692700)
+👉 [Livret d'enquête en PDF](https://drive.google.com/file/d/1y1vorJXmLHTcGAqTDS8duEwUvizLkRfK/view?usp=drive_link)
+👉 [Fiche d'aide pour les professeurs](https://drive.google.com/file/d/1gEnBZo8Q5D5Xk9-UxO9Pf0XAWj18uYG5/view?usp=drive_link)

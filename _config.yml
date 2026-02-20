@@ -4,6 +4,7 @@ url: "https://damiencampagnaud.github.io"
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
 
 collections:
   genially:

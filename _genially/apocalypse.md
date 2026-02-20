@@ -15,8 +15,8 @@ layout: single
 
 L'élève se retrouve plongé dans une apocalypse de zombies et doit en trouver la cause. Il abordera les notions de patient zéro, d'agents pathogène, bactérie, virus, microbiote, contamination, infection et mode de transmission. Une bonne première séance d'introduction et/ou de rappels des années précédentes !
 
-Durée : 1h
+<strong><u>Durée :</u></strong> 1h
 
-Pré-requis : 12 ans (attention, présence d'un screamer!)
+<strong><u>Pré-requis :</u></strong> 12 ans (attention, présence d'un screamer!)
 
 ---

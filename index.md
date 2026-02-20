@@ -4,7 +4,10 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 ---
 <main style="max-width:1400px; margin:0 auto; padding:40px;">
 
+  <section class="section-title">
   <h2>Accès rapide aux Genially</h2>
+  <div class="section-line"></div>
+</section>
 
   <div class="home-genially-grid">
     {% for item in site.genially %}

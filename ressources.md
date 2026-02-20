@@ -128,6 +128,11 @@ permalink: /ressources/
   color:white;
   text-decoration:none;
   font-weight:bold;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1.2;
 }
 
 .card-btn.secondary {
@@ -136,15 +141,6 @@ permalink: /ressources/
 
 .card-btn:hover {
   opacity:0.9;
-}
-
-/* ===== FIX ESPACE BOUTON GENIALLY (DESKTOP UNIQUEMENT) ===== */
-@media (min-width:769px) {
-  .card-btn {
-    display:inline-flex;
-    align-items:center;
-    line-height:1;
-  }
 }
 
 /* ================= MOBILE FIX ================= */

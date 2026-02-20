@@ -232,3 +232,18 @@ h1, h2, h3 {
 .home-card-overlay h3 {
   text-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
+
+/* ======================================= */
+/* LOGO HEADER */
+/* ======================================= */
+
+.site-logo {
+  width: 120px;          /* taille normale */
+  height: auto;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.site-logo:hover {
+  transform: scale(1.05);
+}

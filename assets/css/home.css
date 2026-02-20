@@ -93,7 +93,18 @@ h1, h2, h3 {
 .main-content {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 30px 40px 60px 40px; /* réduit l’espace en haut */
+}
+
+/* ======================================= */
+/* TITRE SECTION GENIALLY */
+/* ======================================= */
+
+.main-content h2 {
+  color: #000 !important;
+  font-weight: 800 !important;
+  font-size: 2rem;
+  letter-spacing: -0.5px;
 }
 
 /* ===================================================== */

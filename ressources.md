@@ -138,6 +138,15 @@ permalink: /ressources/
   opacity:0.9;
 }
 
+/* ===== FIX ESPACE BOUTON GENIALLY (DESKTOP UNIQUEMENT) ===== */
+@media (min-width:769px) {
+  .card-btn {
+    display:inline-flex;
+    align-items:center;
+    line-height:1;
+  }
+}
+
 /* ================= MOBILE FIX ================= */
 
 @media (max-width:768px) {

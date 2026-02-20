@@ -7,7 +7,7 @@ pdf_files:
   - name: "Fiche activité PDF"
     url: "/assets/pdf/apocalypse.pdf"
   - name: "Fiche activité PDF N°2"
-    url: "/assets/pdf/apocalypse2.pdf" 
+    url: "/assets/pdf/apocalypse2.pdf"
 layout: single
 ---
 

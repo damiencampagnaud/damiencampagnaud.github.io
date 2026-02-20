@@ -3,6 +3,7 @@ title: "L'apparition de nouveaux allèles"
 niveau: "3ème"
 image: /assets/images/lapparitiondenouveauxalleles.png
 genially_url: "https://view.genially.com/68cacf94811209038a85c67a/interactive-content-lapparition-de-nouveaux-alleles"
+pdf_url : /assets/pdf/lapparitiondenouveauxalleles.pdf
 layout: single
 ---
 

@@ -11,12 +11,12 @@ pdf_files:
 layout: single
 ---
 
-## Description
+## <strong>Description</strong>
 
 Une enquête policière à réaliser en groupe. Les élèves devront découvrir qui est le meurtrier en réalisant des expériences et en analysant les éléments mis à leurs disposition.
 
-Durée : 2h à 4h
+<strong>Durée :</strong> 2h à 4h
 
-Pré-requis : WIP
+<strong>Pré-requis :</strong> WIP
 
 ---

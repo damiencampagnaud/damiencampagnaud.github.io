@@ -1,98 +1,198 @@
+# 📚 Ressources
+
+<div style="text-align:center; margin-bottom:30px;">
+  <input type="text" id="searchInput" placeholder="🔎 Rechercher un Genially..."
+    style="width:60%; padding:12px; font-size:16px; border-radius:8px; border:1px solid #ccc;">
+</div>
+
 ---
-layout: default
-title: "Ressources"
-permalink: /ressources/
----
 
-<section class="search-section">
-  <input type="text" id="searchBox" placeholder="Rechercher un Genially...">
-  <div id="searchResults"></div>
-</section>
+## 6ème
 
-<section class="niveau-wrapper">
+<div class="level-banner" onclick="toggleLevel('six')">
+  ⬇️ Voir les ressources 6ème
+</div>
 
-{% assign niveaux = "6ème,5ème,4ème,3ème" | split: "," %}
+<div id="six" class="level-content">
 
-{% for niveau in niveaux %}
-
-  <div class="niveau-block">
-
-    <div class="niveau-header" onclick="toggleNiveau(this)">
-      <h2>{{ niveau }}</h2>
+  <div class="card" data-title="Les débuts de l'humanité">
+    <div class="card-inner" onclick="openResource(this)">
+      <h3>Les débuts de l'humanité</h3>
+      <p>Préhistoire – Premiers hommes</p>
     </div>
 
-    <div class="niveau-content">
+    <div class="resource-detail">
+      <h2>Les débuts de l'humanité</h2>
+      <p>Genially interactif pour comprendre les premiers humains.</p>
 
-      <div class="genially-grid">
-
-      {% for item in site.genially %}
-        {% if item.niveau == niveau %}
-
-      <div class="genially-card" data-title="{{ item.title }}">
-
-            <div class="genially-card-front" onclick="toggleCard(this)">
-              <img src="{{ item.image }}" alt="{{ item.title }}">
-              <div class="card-overlay">
-                <h3>{{ item.title }}</h3>
-                <p>{{ item.niveau }}</p>
-              </div>
-            </div>
-
-            <div class="genially-card-back">
-              {{ item.content }}
-              <a href="{{ item.genially_url }}" target="_blank" class="card-btn">🎮 Ouvrir le Genially</a>
-            </div>
-
-          </div>
-
-        {% endif %}
-      {% endfor %}
-
+      <div class="btn-container">
+        <a href="LIEN_GENIALLY" target="_blank" class="btn">
+          🎮 Ouvrir le Genially
+        </a>
+        <a href="LIEN_PDF" target="_blank" class="btn pdf">
+          📄 Fiche activité
+        </a>
       </div>
-
     </div>
-
   </div>
 
-{% endfor %}
+</div>
 
-<section class="search-section">
-  <input type="text" id="searchBox" placeholder="Rechercher un Genially...">
-  <div id="searchResults"></div>
-</section>
+---
 
-<script src="https://unpkg.com/lunr/lunr.js"></script>
+## 5ème
+
+<div class="level-banner" onclick="toggleLevel('five')">
+  ⬇️ Voir les ressources 5ème
+</div>
+
+<div id="five" class="level-content"></div>
+
+---
+
+## 4ème
+
+<div class="level-banner" onclick="toggleLevel('four')">
+  ⬇️ Voir les ressources 4ème
+</div>
+
+<div id="four" class="level-content"></div>
+
+---
+
+## 3ème
+
+<div class="level-banner" onclick="toggleLevel('three')">
+  ⬇️ Voir les ressources 3ème
+</div>
+
+<div id="three" class="level-content"></div>
+
+---
+
+<style>
+
+.level-banner {
+  background:white;
+  padding:18px;
+  margin:20px 0;
+  border-radius:12px;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.level-banner:hover {
+  transform:scale(1.02);
+}
+
+.level-content {
+  display:none;
+  margin-bottom:30px;
+}
+
+.card {
+  margin-bottom:20px;
+}
+
+.card-inner {
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  cursor:pointer;
+  transition:0.3s;
+  text-align:center;
+}
+
+.card-inner:hover {
+  transform:translateY(-4px);
+}
+
+.resource-detail {
+  display:none;
+  background:white;
+  margin-top:20px;
+  padding:40px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  width:100%;
+}
+
+.resource-detail.active {
+  display:block;
+}
+
+.btn-container {
+  margin-top:25px;
+  text-align:center;
+}
+
+.btn {
+  display:inline-block;
+  margin:10px;
+  padding:12px 22px;
+  border-radius:8px;
+  background:#159957;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.btn:hover {
+  background:#0e7c41;
+}
+
+.btn.pdf {
+  background:#3b82f6;
+}
+
+.btn.pdf:hover {
+  background:#1d4ed8;
+}
+
+</style>
+
 <script>
-fetch('/search.json')
-  .then(response => response.json())
-  .then(data => {
 
-    const idx = lunr(function () {
-      this.ref('url')
-      this.field('title')
-      this.field('niveau')
-      this.field('content')
+function toggleLevel(id) {
+  let content = document.getElementById(id);
+  content.style.display =
+    content.style.display === "block" ? "none" : "block";
+}
 
-      data.forEach(doc => this.add(doc))
-    })
+function openResource(element) {
+  let detail = element.nextElementSibling;
 
-    document.getElementById('searchBox').addEventListener('input', function() {
-      const results = idx.search(this.value)
-      let output = ""
+  let allDetails = document.querySelectorAll(".resource-detail");
+  allDetails.forEach(d => d.classList.remove("active"));
 
-      results.forEach(result => {
-        const match = data.find(d => d.url === result.ref)
-        output += `
-          <div class="search-card">
-            <h3>${match.title}</h3>
-            <p>${match.niveau}</p>
-            <a href="${match.genially_url}" target="_blank" class="card-btn">🎮 Ouvrir</a>
-            <a href="${match.url}" class="card-btn secondary">📄 Voir la ressource</a>
-          </div>
-        `
-      })
+  detail.classList.add("active");
+  detail.scrollIntoView({ behavior: "smooth" });
+}
 
-      document.getElementById('searchResults').innerHTML = output
-    })
-  })
+document.getElementById("searchInput").addEventListener("keyup", function () {
+
+  let filter = this.value.toLowerCase();
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+
+    let title = card.getAttribute("data-title").toLowerCase();
+    let level = card.closest(".level-content");
+
+    if (title.includes(filter)) {
+      card.style.display = "block";
+      level.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+
+  });
+
+});
+
 </script>

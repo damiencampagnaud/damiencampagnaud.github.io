@@ -121,18 +121,23 @@ permalink: /ressources/
   gap:15px;
 }
 
+/* 👉 CORRECTION DÉFINITIVE : hauteur identique */
 .card-btn {
-  padding:10px 18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:42px;          /* force la même hauteur */
+  padding:0 20px;           /* padding horizontal uniquement */
   border-radius:8px;
+
   background:#159957;
   color:white;
   text-decoration:none;
   font-weight:bold;
+  font-size:15px;
 
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  line-height:1.2;
+  white-space:nowrap;
 }
 
 .card-btn.secondary {

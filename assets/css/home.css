@@ -415,3 +415,30 @@ h1, h2, h3 {
   text-decoration: none;
   border-radius: 6px;
 }
+
+/* ========================================= */
+/* DETAIL PLEINE LARGEUR */
+/* ========================================= */
+
+.genially-detail {
+  display: none;
+  width: 100%;
+  background: white;
+  margin-top: 30px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.genially-detail.open {
+  display: block;
+}
+
+.genially-detail-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card-btn.secondary {
+  background: #159957;
+  margin-left: 10px;
+}

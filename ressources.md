@@ -28,7 +28,7 @@ permalink: /ressources/
       {% for item in site.genially %}
         {% if item.niveau == niveau %}
 
-          <div class="genially-card">
+      <div class="genially-card" data-title="{{ item.title }}">
 
             <div class="genially-card-front" onclick="toggleCard(this)">
               <img src="{{ item.image }}" alt="{{ item.title }}">

@@ -97,36 +97,28 @@ h1, h2, h3 {
 }
 
 /* ======================================= */
-/* TITRE SECTION GENIALLY */
+/* SECTION PLEINE LARGEUR BLANCHE */
 /* ======================================= */
 
-.main-content h2 {
-  color: #000 !important;
-  font-weight: 800 !important;
-  font-size: 2rem;
-  letter-spacing: -0.5px;
+.genially-section {
+  width: 100%;
+  background: white;
+  padding: 40px 20px;
+  margin-top: -20px; /* rapproche de ton header */
+  box-shadow: 0 -8px 20px rgba(0,0,0,0.05);
 }
 
-.section-title {
-  margin-top: 0;
-  margin-bottom: 30px;
+.genially-section-inner {
+  max-width: 1400px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.section-title h2 {
+.genially-section h2 {
   color: #000 !important;
   font-weight: 800 !important;
   font-size: 2rem;
-  margin-bottom: 12px;
-}
-
-/* Ligne décorative */
-.section-line {
-  width: 80px;
-  height: 4px;
-  margin: 0 auto;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #155799, #159957);
+  margin: 0;
 }
 
 /* ===================================================== */

@@ -111,7 +111,7 @@ permalink: /ressources/
   display:block;
 }
 
-/* ================= BUTTONS (FIX DÉFINITIF) ================= */
+/* ================= BUTTONS (OVERRIDE CAYMAN PROPRE) ================= */
 
 .button-wrapper {
   margin-top:20px;
@@ -121,30 +121,33 @@ permalink: /ressources/
   gap:15px;
 }
 
-.card-btn {
-  display:flex;
+/* Sélecteur plus spécifique pour écraser le thème */
+.genially-detail .button-wrapper a.card-btn {
+  all: unset;                     /* on neutralise totalement l'héritage */
+
+  display:inline-flex;
   align-items:center;
   justify-content:center;
 
-  height:44px;                 /* hauteur fixe identique */
-  padding:0 22px;              /* uniquement horizontal */
+  height:44px;
+  padding:0 22px;
   border-radius:8px;
 
   background:#159957;
   color:white;
-  text-decoration:none;
   font-weight:bold;
   font-size:15px;
+  cursor:pointer;
+  text-decoration:none;
 
-  box-sizing:border-box;       /* empêche variation */
-  line-height:normal;          /* neutralise héritage */
+  box-sizing:border-box;
 }
 
-.card-btn.secondary {
+.genially-detail .button-wrapper a.card-btn.secondary {
   background:#3b82f6;
 }
 
-.card-btn:hover {
+.genially-detail .button-wrapper a.card-btn:hover {
   opacity:0.9;
 }
 

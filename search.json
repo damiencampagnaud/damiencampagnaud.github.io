@@ -1,15 +1,17 @@
 ---
-layout: none
+layout: null
 ---
 
 [
 {% for item in site.genially %}
 {
-"title": {{ item.title | jsonify }},
-"url": {{ item.url | jsonify }},
-"genially_url": {{ item.genially_url | jsonify }},
-"niveau": {{ item.niveau | jsonify }},
-"content": {{ item.content | strip_html | jsonify }}
+  "title": {{ item.title | jsonify }},
+  "niveau": {{ item.niveau | jsonify }},
+  "image": {{ item.image | jsonify }},
+  "genially_url": {{ item.genially_url | jsonify }},
+  "pdf_url": {{ item.pdf_url | jsonify }},
+  "content": {{ item.content | strip_html | jsonify }},
+  "url": {{ item.url | jsonify }}
 }{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ]

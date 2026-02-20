@@ -3,7 +3,9 @@ title: "The emergence of new alleles"
 niveau: "3ème"
 image: /assets/images/theemergenceofnewalleles.png
 genially_url: "https://view.genially.com/68cacf6d9cd25146bd2c928f/interactive-content-the-emergence-of-new-alleles"
-pdf_url : /assets/pdf/lapparitiondenouveauxalleles.pdf
+pdf_files:
+  - name: "Fiche activité PDF"
+    url: "/assets/pdf/lapparitiondenouveauxalleles.pdf"
 layout: single
 ---
 

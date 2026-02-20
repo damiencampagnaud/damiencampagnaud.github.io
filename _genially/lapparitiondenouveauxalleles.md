@@ -16,6 +16,3 @@ Durée : 1h
 Pré-requis : notion de caractère, phénotype, chromosome, gène, génotype, allèle, gamètes, gonades
 
 ---
-
-👉 [Accéder au Genially](https://view.genially.com/68cacf94811209038a85c67a/interactive-content-lapparition-de-nouveaux-alleles)
-👉 [Activité en PDF](https://drive.google.com/file/d/1iFYeety2Jf8drsG6qxkDnxwXtV4dlsV1/view?usp=sharing)

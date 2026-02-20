@@ -19,8 +19,13 @@
     <!-- HEADER AVEC TA BANNIERE -->
     <header class="custom-header">
       <div class="header-content">
-        <h1>{{ site.title }}</h1>
-        <p>{{ site.description }}</p>
+
+  <img src="{{ '/assets/images/logo.png' | relative_url }}" 
+       alt="Logo"
+       class="site-logo">
+
+  <h1>{{ site.title }}</h1>
+  <p>{{ site.description }}</p>
 
         <nav class="cayman-buttons">
           {% for item in site.data.navigation.main %}

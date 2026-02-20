@@ -3,6 +3,7 @@ title: "Apocalypse"
 niveau: "3ème"
 image: /assets/images/apocalypse.png
 genially_url: "https://view.genially.com/68cacffb9cd25146bd2d00e3/interactive-content-apocalypse"
+pdf_url : /assets/pdf/apocalypse.pdf
 layout: single
 ---
 

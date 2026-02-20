@@ -3,6 +3,11 @@ title: "Enquête policière N°12692700"
 niveau: "3ème"
 image: /assets/images/enquetepoliciere.png
 genially_url: "https://view.genially.com/68cacfd3b01fff97f1e13b52/interactive-content-enquete-policiere-ndegree12692700"
+pdf_files:
+  - name: "Livret d'enquête"
+    url: "/assets/pdf/enquetepoliciere.pdf"
+  - name: "Fiche d'aide aux professeurs"
+    url: "/assets/pdf/enquetepoliciere2.pdf"
 layout: single
 ---
 

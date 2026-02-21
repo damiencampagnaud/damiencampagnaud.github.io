@@ -12,7 +12,6 @@ permalink: /publications/
 <style>
 
 /* ================= SEARCH ================= */
-
 .search-section {
   text-align:center;
   margin-bottom:40px;
@@ -32,7 +31,6 @@ permalink: /publications/
 }
 
 /* ================= ANNEE ================= */
-
 .year-header {
   text-align: center;
   font-weight: bold;
@@ -56,7 +54,6 @@ permalink: /publications/
 }
 
 /* ================= GRID ================= */
-
 .publication-grid {
   display:flex;
   flex-wrap:wrap;
@@ -76,18 +73,29 @@ permalink: /publications/
 }
 
 /* ================= FRONT ================= */
-
 .publication-card-front {
   position:relative;
   cursor:pointer;
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.publication-card-front:hover {
+  transform: translateY(-3px);
 }
 
 .publication-card-front img {
   width:100%;
+  height: 200px;
+  object-fit: cover;
   display:block;
+  transition: transform 0.3s;
+}
+
+.publication-card-front:hover img {
+  transform: scale(1.05);
 }
 
 .card-overlay {
@@ -97,10 +105,10 @@ permalink: /publications/
   background:rgba(0,0,0,0.6);
   color:white;
   padding:10px;
+  text-align:center;
 }
 
 /* ================= DETAIL ================= */
-
 .publication-detail {
   display:none;
   background:white;
@@ -116,7 +124,6 @@ permalink: /publications/
 }
 
 /* ================= BUTTONS ================= */
-
 .button-wrapper {
   margin-top:20px;
   display:flex;
@@ -151,7 +158,6 @@ permalink: /publications/
 }
 
 /* ================= MOBILE ================= */
-
 @media (max-width:768px) {
 
   #searchBox {
@@ -163,18 +169,18 @@ permalink: /publications/
     max-width:100%;
   }
 
+  .publication-card-front img {
+    height:180px;
+  }
 }
-
 </style>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 
 <script>
-
 fetch('/search.json')
   .then(response => response.json())
   .then(data => {
-
     const idx = lunr(function () {
       this.ref('url')
       this.field('title')
@@ -183,35 +189,24 @@ fetch('/search.json')
     })
 
     document.getElementById('searchBox').addEventListener('input', function() {
-
       const query = this.value.trim()
       const resultsContainer = document.getElementById('searchResults')
       resultsContainer.innerHTML = ""
-
       if(query === "") return
 
       const results = idx.search(query)
-
       results.forEach(result => {
-
         const originalCard = document.querySelector(
           '.publication-card[data-url="' + result.ref + '"]'
         )
-
         if(originalCard){
-
           const clone = originalCard.cloneNode(true)
           clone.classList.add("expanded")
           clone.style.maxWidth = "100%"
-
           resultsContainer.appendChild(clone)
-
         }
-
       })
-
     })
-
   })
 
 function toggleYear(element) {
@@ -226,7 +221,6 @@ function togglePublicationCard(element) {
   });
   card.classList.toggle('expanded');
 }
-
 </script>
 
 <section class="year-wrapper">
@@ -244,7 +238,6 @@ function togglePublicationCard(element) {
 
         {% for pub in publications_sorted %}
           {% if pub.year == "2025/2026" %}
-
           <div class="publication-card" data-url="{{ pub.url }}">
 
             <div class="publication-card-front" onclick="togglePublicationCard(this)">
@@ -266,12 +259,10 @@ function togglePublicationCard(element) {
             </div>
 
           </div>
-
           {% endif %}
         {% endfor %}
 
       </div>
-
     </div>
   </div>
 

@@ -4,13 +4,6 @@ title: "Publications"
 permalink: /publications/
 ---
 
-<section class="search-section">
-  <input type="text" id="searchBox" placeholder="Rechercher une publication...">
-  <div id="searchResults"></div>
-</section>
-
-<style>
-
 /* ================= ANNÉES ================= */
 
 .year-header {

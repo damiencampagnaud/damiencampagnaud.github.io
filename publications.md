@@ -32,11 +32,25 @@ permalink: /publications/
 
 /* ================= YEAR ================= */
 .year-header {
+  background:white;
+  padding:18px;
+  border-radius:12px;
+  cursor:pointer;
   text-align:center;
   font-weight:bold;
   font-size:24px;
   color:black;
-  margin-bottom:20px;
+  margin-bottom:15px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.year-content {
+  display:none;
+  margin-bottom:40px;
+}
+
+.year-content.open {
+  display:block;
 }
 
 /* ================= GRID ================= */
@@ -54,7 +68,7 @@ permalink: /publications/
 }
 
 .publication-card.expanded {
-  flex:1 1 100%;
+  flex: 1 1 100%;
   max-width:100%;
 }
 
@@ -184,6 +198,11 @@ function toggleCard(element) {
   card.classList.toggle('expanded');
 }
 
+function toggleYear(element) {
+  const content = element.nextElementSibling;
+  content.classList.toggle('open');
+}
+
 // Recherche
 fetch('/search.json')
   .then(response => response.json())
@@ -219,11 +238,11 @@ fetch('/search.json')
 
 <section class="year-wrapper">
 
-{% assign years = "2025/2026" | split: "," %}
+{% assign years = "2025/2026,2026/2027" | split: "," %}
 
 {% for year in years %}
   <div class="year-block">
-    <div class="year-header">{{ year }}</div>
+    <div class="year-header" onclick="toggleYear(this)">{{ year }}</div>
     <div class="year-content">
       <div class="publication-grid">
       {% assign sorted_publications = site.publications | sort: "date" | reverse %}
@@ -234,7 +253,7 @@ fetch('/search.json')
               <img src="{{ item.image }}" alt="{{ item.title }}">
               <div class="card-overlay">
                 <h3>{{ item.title }}</h3>
-                <p>{{ item.date }}</p>
+                <p>{{ item.date | date: "%Y-%m-%d" }}</p>
               </div>
             </div>
             <div class="publication-detail">

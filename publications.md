@@ -6,14 +6,12 @@ permalink: /publications/
 
 <section class="search-section">
   <input type="text" id="searchBox" placeholder="Rechercher une publication...">
-  <div id="searchResults"></div>
 </section>
 
 <style>
 /* ================= SEARCH ================= */
 .search-section { text-align:center; margin-bottom:40px; }
 #searchBox { width:60%; max-width:500px; padding:12px; border-radius:8px; border:1px solid #ccc; font-size:16px; }
-#searchResults { margin-top:30px; }
 
 /* ================= YEAR TOGGLE ================= */
 .year-toggle { background:white; padding:18px; margin:40px 0 20px 0; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); cursor:pointer; text-align:center; font-weight:bold; font-size:24px; color:black; transition:0.3s; }
@@ -74,39 +72,32 @@ if(searchBox){
         this.ref('url');
         this.field('title');
         this.field('content');
-        this.metadataWhitelist = ['position'];
         data.forEach(doc => this.add(doc));
       });
-
-      const resultsContainer = document.getElementById('searchResults');
 
       searchBox.addEventListener('input', function() {
         const query = this.value.trim();
 
         // reset affichage normal si vide
         if(query === ""){
-          resultsContainer.innerHTML = "";
           document.querySelectorAll('.publication-card').forEach(card => card.style.display='flex');
+          document.querySelectorAll('.year-block').forEach(block => block.classList.remove('expanded-search'));
           return;
         }
 
-        // masquer toutes les publications normales
+        // masquer tout d'abord
         document.querySelectorAll('.publication-card').forEach(card => card.style.display='none');
 
-        resultsContainer.innerHTML = "";
-
-        // recherche et clones
+        // trouver les publications
         const results = idx.search(query + "*");
-        results.forEach(result => {
-          const originalCard = document.querySelector('.publication-card[data-url="' + result.ref + '"]');
-          if(originalCard){
-            const clone = originalCard.cloneNode(true);
-            clone.classList.remove('collapsed');
-            clone.style.display = "flex";
-            resultsContainer.appendChild(clone);
 
-            // ouvrir l'année correspondante si besoin
-            const yearBlock = originalCard.closest('.year-block');
+        results.forEach(result => {
+          const card = document.querySelector('.publication-card[data-url="' + result.ref + '"]');
+          if(card){
+            card.style.display = 'flex';
+
+            // ouvrir l'année correspondante
+            const yearBlock = card.closest('.year-block');
             if(yearBlock) yearBlock.classList.add('expanded');
           }
         });

@@ -206,6 +206,18 @@ permalink: /publications/
 
 }
 
+/* ================= FIX MOBILE POUR RECHERCHE ================= */
+@media (max-width:768px) {
+  #searchResults .publication-card {
+    display: block !important;
+  }
+
+  #searchResults .publication-card .publication-card-front,
+  #searchResults .publication-card .publication-detail {
+    width: 100% !important;
+  }
+}
+  
 </style>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>

@@ -16,6 +16,24 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <!-- Ton CSS -->
     <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+
+    <!-- FIX BOUTONS HEADER MOBILE -->
+    <style>
+      @media (max-width: 768px) {
+        .cayman-buttons {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 10px; /* espace entre les boutons */
+          margin-top: 15px; /* optionnel pour aérer sous le titre/logo */
+        }
+
+        .cayman-buttons .btn {
+          flex: none; /* empêche que les boutons s’étirent */
+        }
+      }
+    </style>
+
   </head>
 
   <body>

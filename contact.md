@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: default
 title: Contact
 permalink: /contact/
 ---
@@ -7,3 +7,5 @@ permalink: /contact/
 Vous pouvez me contacter à :
 
 **damien.campagnaud@gmail.com**
+
+**damien.campagnaud@ac-versailles.fr**

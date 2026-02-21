@@ -171,7 +171,7 @@ permalink: /ressources/
 
 <script>
 
-fetch('/search.json')
+fetch('/search-genially.json')
   .then(response => response.json())
   .then(data => {
 

@@ -30,43 +30,57 @@ permalink: /publications/
   margin-top:30px;
 }
 
-/* ================= YEAR HEADER ================= */
-.year-header {
+/* ================= YEAR TOGGLE ================= */
+
+.year-toggle {
+  background:white;
+  padding:18px;
+  margin:40px 0 20px 0;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  cursor:pointer;
   text-align:center;
   font-weight:bold;
   font-size:24px;
   color:black;
-  margin-bottom:20px;
-}
-
-/* ================= GRID ================= */
-.publication-grid {
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  justify-content:center;
-}
-
-.publication-card {
-  flex:1 1 300px;
-  max-width:350px;
   transition:0.3s;
 }
 
-/* ================= FRONT (VIGNETTES) ================= */
+.year-toggle:hover {
+  background:#f5f5f5;
+}
+
+.year-content {
+  display:none;
+}
+
+.year-block.expanded .year-content {
+  display:block;
+}
+
+/* ================= PUBLICATION LAYOUT ================= */
+
+.publication-card {
+  width:100%;
+  margin-bottom:30px;
+  transition:0.3s;
+}
+
+/* ================= FRONT ================= */
+
 .publication-card-front {
   position:relative;
   cursor:pointer;
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  height:200px; /* FIX : taille identique ressources.md */
+  height:250px;
 }
 
 .publication-card-front img {
   width:100%;
-  height:100%; 
-  object-fit:cover; /* crop propre sans étirer */
+  height:100%;
+  object-fit:cover;
   display:block;
 }
 
@@ -103,8 +117,8 @@ permalink: /publications/
 }
 
 /* ================= DETAIL ================= */
+
 .publication-detail {
-  display:none;
   background:white;
   padding:30px;
   margin-top:15px;
@@ -113,7 +127,14 @@ permalink: /publications/
   text-align:center;
 }
 
+/* mode collapsed = réseau social */
+
+.publication-card.collapsed .publication-detail {
+  display:none;
+}
+
 /* ================= BUTTONS ================= */
+
 .button-wrapper {
   margin-top:20px;
   display:flex;
@@ -148,14 +169,10 @@ permalink: /publications/
 }
 
 /* ================= MOBILE ================= */
+
 @media (max-width:768px) {
   #searchBox {
     width:90%;
-  }
-
-  .publication-card {
-    flex:1 1 100%;
-    max-width:100%;
   }
 }
 
@@ -164,24 +181,23 @@ permalink: /publications/
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 
 <script>
+
+/* ================= TOGGLE PUBLICATION ================= */
+
 function toggleCard(element) {
   const card = element.closest('.publication-card');
-  const detail = card.querySelector('.publication-detail');
-
-  // fermer les autres
-  document.querySelectorAll('.publication-card .publication-detail').forEach(d => {
-    if (d !== detail) d.style.display = 'none';
-  });
-
-  // toggle le détail uniquement
-  if (detail.style.display === 'block') {
-    detail.style.display = 'none';
-  } else {
-    detail.style.display = 'block';
-  }
+  card.classList.toggle('collapsed');
 }
 
-// SEARCH
+/* ================= TOGGLE YEAR ================= */
+
+function toggleYear(element) {
+  const block = element.closest('.year-block');
+  block.classList.toggle('expanded');
+}
+
+/* ================= SEARCH ================= */
+
 const searchBox = document.getElementById('searchBox');
 if(searchBox){
   fetch('/search.json')
@@ -211,17 +227,25 @@ if(searchBox){
       });
     });
 }
+
 </script>
 
 <!-- =================== PUBLICATIONS 2025/2026 =================== -->
-<div class="year-block">
-  <div class="year-header">2025/2026</div>
-  <div class="publication-grid">
+
+<div class="year-block expanded">
+
+  <div class="year-toggle" onclick="toggleYear(this)">
+    2025/2026
+  </div>
+
+  <div class="year-content">
 
     {% assign sorted_publications = site.publications | sort: "date" | reverse %}
     {% for item in sorted_publications %}
       {% if item.year == "2025/2026" %}
+
         <div class="publication-card" data-url="{{ item.url }}">
+
           <div class="publication-card-front" onclick="toggleCard(this)">
             <img src="{{ item.image }}" alt="{{ item.title }}">
             <div class="card-overlay">
@@ -229,8 +253,10 @@ if(searchBox){
               <span>{{ item.date | date: "%d/%m/%Y" }}</span>
             </div>
           </div>
+
           <div class="publication-detail">
             {{ item.content }}
+
             <div class="button-wrapper">
               {% if item.links %}
                 {% for link in item.links %}
@@ -241,7 +267,9 @@ if(searchBox){
               {% endif %}
             </div>
           </div>
+
         </div>
+
       {% endif %}
     {% endfor %}
 
@@ -249,13 +277,20 @@ if(searchBox){
 </div>
 
 <!-- =================== PUBLICATIONS 2026/2027 =================== -->
-<div class="year-block">
-  <div class="year-header">2026/2027</div>
-  <div class="publication-grid">
 
-    {% for item in site.publications %}
+<div class="year-block">
+
+  <div class="year-toggle" onclick="toggleYear(this)">
+    2026/2027
+  </div>
+
+  <div class="year-content">
+
+    {% for item in sorted_publications %}
       {% if item.year == "2026/2027" %}
+
         <div class="publication-card" data-url="{{ item.url }}">
+
           <div class="publication-card-front" onclick="toggleCard(this)">
             <img src="{{ item.image }}" alt="{{ item.title }}">
             <div class="card-overlay">
@@ -263,8 +298,10 @@ if(searchBox){
               <span>{{ item.date | date: "%d/%m/%Y" }}</span>
             </div>
           </div>
+
           <div class="publication-detail">
             {{ item.content }}
+
             <div class="button-wrapper">
               {% if item.links %}
                 {% for link in item.links %}
@@ -275,7 +312,9 @@ if(searchBox){
               {% endif %}
             </div>
           </div>
+
         </div>
+
       {% endif %}
     {% endfor %}
 

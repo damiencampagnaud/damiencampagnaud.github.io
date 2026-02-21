@@ -15,21 +15,15 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
     align-items:center !important;
     gap: 30px; /* espacement identique aux vignettes */
     margin-top: 20px;
-    margin-bottom: 40px; /* espace avec section suivante */
-    padding: 0 10px; /* petit padding latéral pour ne pas toucher les bords */
+    margin-bottom: 20px;
   }
 
   .home-card,
   .home-publication-card {
     width:95% !important;
     margin:0 auto !important;
-  }
-
-  /* ================= PUBLICATION A LA UNE MOBILE ================= */
-  .home-publication-card {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   .home-publication-card .publication-card-front,
@@ -37,13 +31,11 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
     width:100% !important;
   }
 
-  /* Conserver le ratio de l'image et centrage */
   .home-publication-card .publication-card-front img {
-    width: auto !important;       /* ne pas étirer horizontalement */
-    max-width: 100% !important;   /* ne pas dépasser la carte */
-    height: auto !important;      /* conserver le ratio naturel */
+    margin: 0 auto !important;
+    max-width: 100%;
+    height: auto;
     display: block;
-    margin: 0 auto 20px auto;     /* centrer + espace en dessous */
   }
 
   .home-publication-card .publication-detail {
@@ -51,6 +43,17 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
     box-sizing: border-box;
   }
 
+}
+
+/* ================= RAPPORT SECTION/HEADER ================= */
+.genially-section:first-of-type {
+  margin-top: 20px; /* réduit l'espace au-dessus de la section sur desktop */
+}
+
+@media (max-width:768px) {
+  .genially-section:first-of-type {
+    margin-top: 10px; /* moins d'espace sur mobile */
+  }
 }
 </style>
 

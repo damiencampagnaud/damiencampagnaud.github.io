@@ -8,10 +8,10 @@ image: "/assets/images/explodingplanet.png"
 content: |
   Les éco-délégués de l'atelier D.D. vous présentent le jeu éco-responsable : **Exploding Planet !**
 links:
-  - url: "/assets/pdf/explodingplanet.pdf"
-    name: "📄 Fiche du jeu"
+  - url: "https://drive.google.com/file/d/1Jypd-i13dIgcg1vsUndmy7ANt3Xlkqyx/view"
+    name: "🃏 Cartes du jeu à imprimer"
     secondary: true
   - url: "/assets/pdf/explodingplanet2.pdf"
-    name: "📄 Règles complètes"
+    name: "📄 Règles du jeu"
     secondary: true
 ---

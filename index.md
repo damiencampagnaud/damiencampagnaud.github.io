@@ -7,7 +7,7 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 /* ================= MOBILE ALIGN FIX ================= */
 @media (max-width:768px) {
 
-  /* ================= GRID GENIALLY ================= */
+  /* ================= GRID GENIALLY & PUBLICATION ================= */
   .home-genially-grid,
   .home-publication-grid {
     display:flex !important;
@@ -42,17 +42,16 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
     padding: 20px;
     box-sizing: border-box;
   }
-
 }
 
-/* ================= RAPPORT SECTION/HEADER ================= */
-.genially-section:first-of-type {
-  margin-top: 10px; /* réduit l'espace entre le header et la section */
+/* ================= HEADER FIX ESPACEMENT ================= */
+.custom-header {
+  padding: 3rem 1rem 4rem 1rem; /* réduit l'espace entre header et section */
 }
 
 @media (max-width:768px) {
-  .genially-section:first-of-type {
-    margin-top: 5px; /* réduit également sur mobile */
+  .custom-header {
+    padding: 2rem 1rem 3rem 1rem; /* réduit aussi sur mobile */
   }
 }
 </style>

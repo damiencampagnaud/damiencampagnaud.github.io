@@ -53,13 +53,11 @@ permalink: /publications/
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 <script>
-
 /* ================= TOGGLES ================= */
 function toggleCard(element) {
   const card = element.closest('.publication-card');
   card.classList.toggle('collapsed');
 }
-
 function toggleYear(element) {
   const block = element.closest('.year-block');
   block.classList.toggle('expanded');
@@ -87,28 +85,32 @@ if(searchBox){
 
         // reset affichage normal si vide
         if(query === ""){
-          document.querySelectorAll('.publication-card').forEach(card => { card.style.display='flex'; });
           resultsContainer.innerHTML = "";
+          document.querySelectorAll('.publication-card').forEach(card => card.style.display='flex');
           return;
         }
 
-        // masquer toutes les publications
-        document.querySelectorAll('.publication-card').forEach(card => { card.style.display='none'; });
+        // masquer toutes les publications normales
+        document.querySelectorAll('.publication-card').forEach(card => card.style.display='none');
 
         resultsContainer.innerHTML = "";
 
-        // recherche + clone pour affichage dans searchResults
+        // recherche et clones
         const results = idx.search(query + "*");
         results.forEach(result => {
           const originalCard = document.querySelector('.publication-card[data-url="' + result.ref + '"]');
           if(originalCard){
             const clone = originalCard.cloneNode(true);
             clone.classList.remove('collapsed');
+            clone.style.display = "flex";
             resultsContainer.appendChild(clone);
+
+            // ouvrir l'année correspondante si besoin
+            const yearBlock = originalCard.closest('.year-block');
+            if(yearBlock) yearBlock.classList.add('expanded');
           }
         });
       });
-
     });
 }
 </script>

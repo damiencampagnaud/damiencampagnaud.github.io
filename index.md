@@ -5,9 +5,14 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 
 <style>
 
-/* ================= ESPACE HEADER → SECTION (40px EXACT) ================= */
+/* ================= ESPACE HEADER → SECTION ================= */
 .genially-section:first-of-type {
   margin-top: 10px;
+}
+
+/* ================= ESPACE SECTION → VIGNETTES GENIALLY (20px EXACT) ================= */
+.home-genially-grid {
+  margin-top: 20px !important;
 }
 
 
@@ -22,7 +27,7 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
     align-items:center !important;
     gap: 30px;
     margin-top: 20px;
-    margin-bottom: 40px; /* espace avec section suivante */
+    margin-bottom: 40px;
   }
 
   .home-card,

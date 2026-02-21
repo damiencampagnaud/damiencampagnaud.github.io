@@ -10,8 +10,6 @@ collections:
   genially:
     output: true
     permalink: /genially/:name/
-
-collections:
   publications:
     output: true
     permalink: /publications/:path/

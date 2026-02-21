@@ -7,7 +7,7 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 
 /* ================= ESPACE HEADER → SECTION (40px EXACT) ================= */
 .genially-section:first-of-type {
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 

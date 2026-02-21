@@ -1,0 +1,17 @@
+---
+layout: null
+---
+
+[
+{% assign sorted_publications = site.publications | sort: "date" | reverse %}
+{% for item in sorted_publications %}
+{
+  "title": {{ item.title | jsonify }},
+  "year": {{ item.year | jsonify }},
+  "image": {{ item.image | jsonify }},
+  "content": {{ item.content | strip_html | jsonify }},
+  "links": {{ item.links | jsonify }},
+  "url": {{ item.url | jsonify }}
+}{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]

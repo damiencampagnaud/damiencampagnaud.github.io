@@ -5,8 +5,8 @@ permalink: /publications/
 ---
 
 <section class="search-section">
-  <input type="text" id="searchBox" placeholder="Rechercher une publication...">
-  <div id="searchResults"></div>
+  <input type="text" id="pubSearchBox" placeholder="Rechercher une publication...">
+  <div id="pubSearchResults"></div>
 </section>
 
 <style>
@@ -18,7 +18,7 @@ permalink: /publications/
   margin-bottom:40px;
 }
 
-#searchBox {
+#pubSearchBox {
   width:60%;
   max-width:500px;
   padding:12px;
@@ -27,7 +27,7 @@ permalink: /publications/
   font-size:16px;
 }
 
-#searchResults {
+#pubSearchResults {
   margin-top:30px;
 }
 
@@ -51,63 +51,120 @@ permalink: /publications/
   display:block;
 }
 
-/* ================= THREAD ================= */
+/* ================= GRID ================= */
 
-.publication-thread {
+.pub-grid {
   display:flex;
-  flex-direction:column;
-  gap:15px;
+  flex-wrap:wrap;
+  gap:20px;
+  justify-content:center;
 }
 
-.publication-card {
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
-  cursor:pointer;
+.pub-card {
+  flex: 1 1 300px;
+  max-width:350px;
   transition:0.3s;
 }
 
-.publication-card.expanded {
-  background:#f9f9f9;
+.pub-card.expanded {
+  flex: 1 1 100%;
+  max-width:100%;
 }
 
-.publication-date {
-  font-size:14px;
-  color:#555;
-  margin-bottom:8px;
+/* ================= FRONT ================= */
+
+.pub-card-front {
+  position:relative;
+  cursor:pointer;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
-.publication-title {
-  font-weight:bold;
-  margin-bottom:10px;
-}
-
-.publication-content {
-  display:none;
-  margin-top:10px;
-}
-
-.publication-card.expanded .publication-content {
+.pub-card-front img {
+  width:100%;
   display:block;
+}
+
+.pub-overlay {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  color:white;
+  padding:10px;
+}
+
+/* ================= DETAIL ================= */
+
+.pub-detail {
+  display:none;
+  background:white;
+  padding:30px;
+  margin-top:15px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+.pub-card.expanded .pub-detail {
+  display:block;
+}
+
+/* ================= BUTTONS ================= */
+
+.button-wrapper {
+  margin-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px;
+}
+
+.pub-detail .button-wrapper a.card-btn {
+  all: unset;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:44px;
+  padding:0 22px;
+  border-radius:8px;
+  background:#159957;
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  text-decoration:none;
+  cursor:pointer;
+  box-sizing:border-box;
+}
+
+.pub-detail .button-wrapper a.card-btn.secondary {
+  background:#3b82f6;
+}
+
+.pub-detail .button-wrapper a.card-btn:hover {
+  opacity:0.9;
 }
 
 /* ================= MOBILE ================= */
 
 @media (max-width:768px) {
-  #searchBox {
+  #pubSearchBox {
     width:90%;
+  }
+
+  .pub-card {
+    flex:1 1 100%;
+    max-width:100%;
   }
 }
 
 </style>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
-
 <script>
 
-// ==== Search functionality ====
-fetch('/search_publications.json')
+fetch('/publications.json')
   .then(response => response.json())
   .then(data => {
 
@@ -118,10 +175,10 @@ fetch('/search_publications.json')
       data.forEach(doc => this.add(doc))
     })
 
-    document.getElementById('searchBox').addEventListener('input', function() {
+    document.getElementById('pubSearchBox').addEventListener('input', function() {
 
       const query = this.value.trim()
-      const resultsContainer = document.getElementById('searchResults')
+      const resultsContainer = document.getElementById('pubSearchResults')
       resultsContainer.innerHTML = ""
 
       if(query === "") return
@@ -131,13 +188,15 @@ fetch('/search_publications.json')
       results.forEach(result => {
 
         const originalCard = document.querySelector(
-          '.publication-card[data-url="' + result.ref + '"]'
+          '.pub-card[data-url="' + result.ref + '"]'
         )
 
         if(originalCard){
 
           const clone = originalCard.cloneNode(true)
           clone.classList.add("expanded")
+          clone.style.maxWidth = "100%"
+
           resultsContainer.appendChild(clone)
 
         }
@@ -153,8 +212,15 @@ function toggleYear(element) {
   content.classList.toggle("open");
 }
 
-function togglePublication(element) {
-  const card = element.closest('.publication-card');
+function toggleCard(element) {
+  const card = element.closest('.pub-card');
+
+  document.querySelectorAll('.pub-card').forEach(c => {
+    if (c !== card) {
+      c.classList.remove('expanded');
+    }
+  });
+
   card.classList.toggle("expanded");
 }
 
@@ -162,50 +228,55 @@ function togglePublication(element) {
 
 <section class="year-wrapper">
 
-{% assign years = "2025/2026,2024/2025,2023/2024" | split: "," %}
+{% assign year = "2025/2026" %}
 
-{% for year in years %}
+<div class="year-block">
 
-  <div class="year-block">
+  <div class="year-header" onclick="toggleYear(this)">
+    <h2>{{ year }}</h2>
+  </div>
 
-    <div class="year-header" onclick="toggleYear(this)">
-      <h2>{{ year }}</h2>
-    </div>
+  <div class="year-content open">
 
-    <div class="year-content">
+    <div class="pub-grid">
 
-      <div class="publication-thread">
+    {% assign pubs = site.publications | where: "year", year | sort: "date" | reverse %}
 
-      {% assign pubs = site.publications | where: "year", year | sort: "date" | reverse %}
+    {% for pub in pubs %}
 
-      {% for pub in pubs %}
+      <div class="pub-card" data-url="{{ pub.url }}">
 
-        <div class="publication-card" data-url="{{ pub.url }}">
-
-          <div class="publication-date">{{ pub.date | date: "%d/%m/%Y" }}</div>
-          <div class="publication-title">{{ pub.title }}</div>
-
-          <div class="publication-content">
-            {{ pub.content }}
-            {% if pub.links %}
-              <div class="button-wrapper" style="margin-top:10px;">
-              {% for link in pub.links %}
-                <a href="{{ link.url }}" target="_blank" class="card-btn">{{ link.name }}</a>
-              {% endfor %}
-              </div>
-            {% endif %}
+        <div class="pub-card-front" onclick="toggleCard(this)">
+          {% if pub.image %}
+            <img src="{{ pub.image }}" alt="{{ pub.title }}">
+          {% else %}
+            <img src="/assets/images/default-publication.png" alt="{{ pub.title }}">
+          {% endif %}
+          <div class="pub-overlay">
+            <h3>{{ pub.title }}</h3>
+            <p>{{ pub.date | date: "%d %B %Y" }}</p>
           </div>
-
         </div>
 
-      {% endfor %}
+        <div class="pub-detail">
+          <div>{{ pub.content }}</div>
+          {% if pub.links %}
+          <div class="button-wrapper">
+            {% for link in pub.links %}
+              <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">{{ link.name }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
 
       </div>
+
+    {% endfor %}
 
     </div>
 
   </div>
 
-{% endfor %}
+</div>
 
 </section>

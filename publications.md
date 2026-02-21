@@ -51,7 +51,7 @@ permalink: /publications/
 }
 
 .year-content {
-  display:none;
+  display:block; /* ✔ vignettes ouvertes par défaut */
 }
 
 .year-block.expanded .year-content {
@@ -204,10 +204,7 @@ permalink: /publications/
     width:100%;
   }
 
-}
-
-/* ================= FIX MOBILE POUR RECHERCHE ================= */
-@media (max-width:768px) {
+  /* ================= FIX MOBILE POUR RECHERCHE ================= */
   #searchResults .publication-card {
     display: block !important;
   }
@@ -216,8 +213,9 @@ permalink: /publications/
   #searchResults .publication-card .publication-detail {
     width: 100% !important;
   }
+
 }
-  
+
 </style>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
@@ -288,7 +286,6 @@ if(searchBox){
 
             // afficher la publication
             originalCard.style.display = 'flex';
-            originalCard.classList.remove('collapsed'); // ✅ vignette ouverte par défaut lors de recherche
           }
         });
 
@@ -313,6 +310,7 @@ if(searchBox){
       {% if item.year == "2025/2026" %}
 
         <div class="publication-card" data-url="{{ item.url }}">
+
           <div class="publication-card-front" onclick="toggleCard(this)">
             <img src="{{ item.image }}" alt="{{ item.title }}">
             <div class="card-overlay">
@@ -356,6 +354,7 @@ if(searchBox){
       {% if item.year == "2026/2027" %}
 
         <div class="publication-card" data-url="{{ item.url }}">
+
           <div class="publication-card-front" onclick="toggleCard(this)">
             <img src="{{ item.image }}" alt="{{ item.title }}">
             <div class="card-overlay">

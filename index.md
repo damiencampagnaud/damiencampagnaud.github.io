@@ -7,13 +7,13 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 /* ================= MOBILE ALIGN FIX ================= */
 @media (max-width:768px) {
 
-  /* ===== Grid publicaton et Genially centrées ===== */
-  .home-genially-grid,
-  .home-publication-grid {
-    display:flex !important;
+  /* ===== Grilles centrées et espacement identique ===== */
+  .home-publication-grid,
+  .home-genially-grid {
+    display:flex !important;       /* override grid de home.css */
     flex-direction:column !important;
     align-items:center !important;
-    gap: 30px; /* ajoute un espacement vertical entre les cartes */
+    gap: 30px; /* espacement vertical identique */
   }
 
   /* ===== Cartes centrées et largeur max ===== */
@@ -31,8 +31,16 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 
   /* ===== Centrage vertical et espacement ===== */
   .home-publication-card {
-    flex-direction: column !important;
-    align-items: center !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+  }
+
+  /* ===== Image centrée dans la carte ===== */
+  .home-publication-card .publication-card-front img {
+    margin: 0 auto !important;
+    height: auto;
+    max-width: 100%;
   }
 
 }

@@ -40,8 +40,7 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   <div class="home-publication-grid">
     {% assign latest_publication = site.publications | sort: "date" | reverse | first %}
     {% if latest_publication %}
-      <div class="home-publication-card publication-card" data-url="{{ latest_publication.url }}">
-        <!-- note: collapsed supprimé pour être ouvert par défaut -->
+      <div class="home-publication-card publication-card collapsed" data-url="{{ latest_publication.url }}">
         <div class="publication-card-front" onclick="this.closest('.publication-card').classList.toggle('collapsed')">
           <img src="{{ latest_publication.image }}" alt="{{ latest_publication.title }}">
           <div class="card-overlay">

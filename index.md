@@ -15,7 +15,7 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
     align-items:center !important;
     gap: 30px; /* espacement identique aux vignettes */
     margin-top: 20px;
-    margin-bottom: 20px; /* espace avec section suivante */
+    margin-bottom: 40px; /* espace avec section suivante */
     padding: 0 10px; /* petit padding latéral pour ne pas toucher les bords */
   }
 
@@ -30,7 +30,6 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    margin-bottom: 30px; /* espace avec section suivante */
   }
 
   .home-publication-card .publication-card-front,

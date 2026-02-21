@@ -10,7 +10,7 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   /* ===== Grilles centrées et espacement identique ===== */
   .home-publication-grid,
   .home-genially-grid {
-    display:flex !important;       /* override grid de home.css */
+    display:flex !important;
     flex-direction:column !important;
     align-items:center !important;
     gap: 30px; /* espacement vertical identique */
@@ -34,6 +34,10 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
     display:flex !important;
     flex-direction:column !important;
     align-items:center !important;
+
+    /* marge haute et basse pour espacement */
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
   /* ===== Image centrée dans la carte ===== */

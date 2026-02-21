@@ -576,3 +576,49 @@ h1, h2, h3 {
     width: 100% !important;
   }
 }
+
+/* ================= MOBILE FIX - PUBLICATION A LA UNE ================= */
+@media (max-width:768px) {
+
+  /* Grille centrée avec espacement identique aux Genially */
+  .home-publication-grid {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* Carte centrée et largeur max */
+  .home-publication-card {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    width:95% !important;
+    margin:0 auto !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  /* Image et détails pleine largeur */
+  .home-publication-card .publication-card-front,
+  .home-publication-card .publication-detail {
+    width:100% !important;
+  }
+
+  /* Image centrée verticalement et horizontale */
+  .home-publication-card .publication-card-front img {
+    margin: 0 auto !important;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Détails texte correctement alignés */
+  .home-publication-card .publication-detail {
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+}

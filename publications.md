@@ -67,7 +67,6 @@ if(searchBox){
   fetch('/search.json')
     .then(response => response.json())
     .then(data => {
-
       const idx = lunr(function () {
         this.ref('url');
         this.field('title');
@@ -76,27 +75,26 @@ if(searchBox){
       });
 
       searchBox.addEventListener('input', function() {
-        const query = this.value.trim();
+        const query = this.value.trim().toLowerCase();
 
-        // reset affichage normal si vide
+        // si vide, réaffiche tout et ferme pas les années
         if(query === ""){
-          document.querySelectorAll('.publication-card').forEach(card => card.style.display='flex');
-          document.querySelectorAll('.year-block').forEach(block => block.classList.remove('expanded-search'));
+          document.querySelectorAll('.publication-card').forEach(c => c.style.display = 'flex');
           return;
         }
 
-        // masquer tout d'abord
-        document.querySelectorAll('.publication-card').forEach(card => card.style.display='none');
+        // masquer toutes les publications
+        document.querySelectorAll('.publication-card').forEach(c => c.style.display = 'none');
 
-        // trouver les publications
+        // recherche
         const results = idx.search(query + "*");
 
-        results.forEach(result => {
-          const card = document.querySelector('.publication-card[data-url="' + result.ref + '"]');
+        results.forEach(r => {
+          const card = document.querySelector('.publication-card[data-url="' + r.ref + '"]');
           if(card){
             card.style.display = 'flex';
 
-            // ouvrir l'année correspondante
+            // ouvrir l'année
             const yearBlock = card.closest('.year-block');
             if(yearBlock) yearBlock.classList.add('expanded');
           }
@@ -106,7 +104,8 @@ if(searchBox){
 }
 </script>
 
-<!-- =================== PUBLICATIONS 2025/2026 =================== -->
+<!-- ================= PUBLICATIONS ================= -->
+
 <div class="year-block expanded">
   <div class="year-toggle" onclick="toggleYear(this)">2025/2026</div>
   <div class="year-content">
@@ -137,7 +136,6 @@ if(searchBox){
   </div>
 </div>
 
-<!-- =================== PUBLICATIONS 2026/2027 =================== -->
 <div class="year-block">
   <div class="year-toggle" onclick="toggleYear(this)">2026/2027</div>
   <div class="year-content">

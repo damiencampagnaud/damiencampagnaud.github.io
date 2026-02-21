@@ -7,23 +7,28 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 /* ================= MOBILE ALIGN FIX ================= */
 @media (max-width:768px) {
 
-  /* ================= GRID GENIALLY ================= */
   .home-genially-grid,
   .home-publication-grid {
     display:flex !important;
     flex-direction:column !important;
     align-items:center !important;
-    gap: 30px; /* espacement identique aux vignettes */
+    gap: 30px; /* espacement entre cartes */
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* espace avec section suivante */
   }
 
   .home-card,
   .home-publication-card {
     width:95% !important;
     margin:0 auto !important;
-    margin-top: 15px;
-    margin-bottom: 15px;
+  }
+
+  /* ================= PUBLICATION A LA UNE MOBILE ================= */
+  .home-publication-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-bottom: 30px; /* espace avant section suivante */
   }
 
   .home-publication-card .publication-card-front,
@@ -32,10 +37,10 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   }
 
   .home-publication-card .publication-card-front img {
-    margin: 0 auto !important;
-    max-width: 100%;
-    height: auto;
+    width: 95% !important;
+    height: auto !important;
     display: block;
+    margin: 0 auto 20px auto; /* centrer + espace en dessous */
   }
 
   .home-publication-card .publication-detail {

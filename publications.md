@@ -30,27 +30,13 @@ permalink: /publications/
   margin-top:30px;
 }
 
-/* ================= YEAR ================= */
+/* ================= YEAR HEADER ================= */
 .year-header {
-  background:white;
-  padding:18px;
-  border-radius:12px;
-  cursor:pointer;
   text-align:center;
   font-weight:bold;
   font-size:24px;
   color:black;
-  margin-bottom:15px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.08);
-}
-
-.year-content {
-  display:none;
-  margin-bottom:40px;
-}
-
-.year-content.open {
-  display:block;
+  margin-bottom:20px;
 }
 
 /* ================= GRID ================= */
@@ -62,42 +48,38 @@ permalink: /publications/
 }
 
 .publication-card {
-  flex: 1 1 300px;
+  flex:1 1 300px;
   max-width:350px;
   transition:0.3s;
 }
 
-.publication-card.expanded {
-  flex: 1 1 100%;
-  max-width:100%;
-}
-
-/* ================= FRONT ================= */
+/* ================= FRONT (VIGNETTES) ================= */
 .publication-card-front {
   position:relative;
   cursor:pointer;
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  height:200px; /* FIX : taille identique ressources.md */
 }
 
 .publication-card-front img {
   width:100%;
+  height:100%; 
+  object-fit:cover; /* crop propre sans étirer */
   display:block;
 }
 
-/* Overlay au hover */
 .card-overlay {
   position:absolute;
   top:0;
-  left:0;
   width:100%;
   height:100%;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0);
   color:white;
   opacity:0;
   transition:0.3s;
@@ -107,18 +89,17 @@ permalink: /publications/
 
 .publication-card-front:hover .card-overlay {
   opacity:1;
+  background:rgba(0,0,0,0.6);
 }
 
 .card-overlay h3 {
   font-weight:bold;
-  font-size:18px;
-  margin-bottom:5px;
+  margin:0 0 5px 0;
 }
 
-.card-overlay p {
+.card-overlay span {
   font-weight:normal;
   font-size:14px;
-  margin:0;
 }
 
 /* ================= DETAIL ================= */
@@ -130,10 +111,6 @@ permalink: /publications/
   border-radius:12px;
   box-shadow:0 6px 18px rgba(0,0,0,0.1);
   text-align:center;
-}
-
-.publication-card.expanded .publication-detail {
-  display:block;
 }
 
 /* ================= BUTTONS ================= */
@@ -150,18 +127,15 @@ permalink: /publications/
   display:inline-flex;
   align-items:center;
   justify-content:center;
-
   height:44px;
   padding:0 22px;
   border-radius:8px;
-
   background:#159957;
   color:white;
   font-weight:bold;
   font-size:15px;
   text-decoration:none;
   cursor:pointer;
-
   box-sizing:border-box;
 }
 
@@ -192,88 +166,118 @@ permalink: /publications/
 <script>
 function toggleCard(element) {
   const card = element.closest('.publication-card');
-  document.querySelectorAll('.publication-card').forEach(c => {
-    if (c !== card) c.classList.remove('expanded');
+  const detail = card.querySelector('.publication-detail');
+
+  // fermer les autres
+  document.querySelectorAll('.publication-card .publication-detail').forEach(d => {
+    if (d !== detail) d.style.display = 'none';
   });
-  card.classList.toggle('expanded');
+
+  // toggle le détail uniquement
+  if (detail.style.display === 'block') {
+    detail.style.display = 'none';
+  } else {
+    detail.style.display = 'block';
+  }
 }
 
-function toggleYear(element) {
-  const content = element.nextElementSibling;
-  content.classList.toggle('open');
-}
+// SEARCH
+const searchBox = document.getElementById('searchBox');
+if(searchBox){
+  fetch('/search.json')
+    .then(response => response.json())
+    .then(data => {
+      const idx = lunr(function () {
+        this.ref('url');
+        this.field('title');
+        this.field('content');
+        data.forEach(doc => this.add(doc));
+      });
 
-// Recherche
-fetch('/search.json')
-  .then(response => response.json())
-  .then(data => {
-    const idx = lunr(function () {
-      this.ref('url')
-      this.field('title')
-      this.field('content')
-      data.forEach(doc => this.add(doc))
-    });
-
-    document.getElementById('searchBox').addEventListener('input', function() {
-      const query = this.value.trim();
-      const resultsContainer = document.getElementById('searchResults');
-      resultsContainer.innerHTML = "";
-      if(query === "") return;
-
-      const results = idx.search(query);
-      results.forEach(result => {
-        const originalCard = document.querySelector(
-          '.publication-card[data-url="' + result.ref + '"]'
-        );
-        if(originalCard){
-          const clone = originalCard.cloneNode(true);
-          clone.classList.add("expanded");
-          clone.style.maxWidth = "100%";
-          resultsContainer.appendChild(clone);
-        }
+      searchBox.addEventListener('input', function() {
+        const query = this.value.trim();
+        const resultsContainer = document.getElementById('searchResults');
+        resultsContainer.innerHTML = "";
+        if(query === "") return;
+        const results = idx.search(query);
+        results.forEach(result => {
+          const originalCard = document.querySelector('.publication-card[data-url="' + result.ref + '"]');
+          if(originalCard){
+            const clone = originalCard.cloneNode(true);
+            clone.style.display = 'block';
+            resultsContainer.appendChild(clone);
+          }
+        });
       });
     });
-  });
+}
 </script>
 
-<section class="year-wrapper">
+<!-- =================== PUBLICATIONS 2025/2026 =================== -->
+<div class="year-block">
+  <div class="year-header">2025/2026</div>
+  <div class="publication-grid">
 
-{% assign years = "2025/2026,2026/2027" | split: "," %}
-
-{% for year in years %}
-  <div class="year-block">
-    <div class="year-header" onclick="toggleYear(this)">{{ year }}</div>
-    <div class="year-content">
-      <div class="publication-grid">
-      {% assign sorted_publications = site.publications | sort: "date" | reverse %}
-      {% for item in sorted_publications %}
-        {% if item.year == year %}
-          <div class="publication-card" data-url="{{ item.url }}">
-            <div class="publication-card-front" onclick="toggleCard(this)">
-              <img src="{{ item.image }}" alt="{{ item.title }}">
-              <div class="card-overlay">
-                <h3>{{ item.title }}</h3>
-                <p>{{ item.date | date: "%Y-%m-%d" }}</p>
-              </div>
-            </div>
-            <div class="publication-detail">
-              {{ item.content }}
-              <div class="button-wrapper">
-                {% if item.links %}
-                  {% for link in item.links %}
-                    <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
-                      {{ link.name }}
-                    </a>
-                  {% endfor %}
-                {% endif %}
-              </div>
+    {% assign sorted_publications = site.publications | sort: "date" | reverse %}
+    {% for item in sorted_publications %}
+      {% if item.year == "2025/2026" %}
+        <div class="publication-card" data-url="{{ item.url }}">
+          <div class="publication-card-front" onclick="toggleCard(this)">
+            <img src="{{ item.image }}" alt="{{ item.title }}">
+            <div class="card-overlay">
+              <h3>{{ item.title }}</h3>
+              <span>{{ item.date | date: "%d/%m/%Y" }}</span>
             </div>
           </div>
-        {% endif %}
-      {% endfor %}
-      </div>
-    </div>
-  </div>
-{% endfor %}
+          <div class="publication-detail">
+            {{ item.content }}
+            <div class="button-wrapper">
+              {% if item.links %}
+                {% for link in item.links %}
+                  <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
+                    {{ link.name }}
+                  </a>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
 
-</section>
+  </div>
+</div>
+
+<!-- =================== PUBLICATIONS 2026/2027 =================== -->
+<div class="year-block">
+  <div class="year-header">2026/2027</div>
+  <div class="publication-grid">
+
+    {% for item in site.publications %}
+      {% if item.year == "2026/2027" %}
+        <div class="publication-card" data-url="{{ item.url }}">
+          <div class="publication-card-front" onclick="toggleCard(this)">
+            <img src="{{ item.image }}" alt="{{ item.title }}">
+            <div class="card-overlay">
+              <h3>{{ item.title }}</h3>
+              <span>{{ item.date | date: "%d/%m/%Y" }}</span>
+            </div>
+          </div>
+          <div class="publication-detail">
+            {{ item.content }}
+            <div class="button-wrapper">
+              {% if item.links %}
+                {% for link in item.links %}
+                  <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
+                    {{ link.name }}
+                  </a>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+  </div>
+</div>

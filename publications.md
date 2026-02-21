@@ -30,100 +30,74 @@ permalink: /publications/
   margin-top:30px;
 }
 
-/* ================= ANNEE ================= */
+/* ================= YEAR ================= */
 .year-header {
-  text-align: center;
-  font-weight: bold;
-  color: black;
-  font-size: 22px;
-  margin-bottom: 15px;
-  cursor: pointer;
-  padding: 18px;
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-.year-content {
-  display:none;
-  margin-bottom:40px;
-}
-
-.year-content.open {
-  display:block;
+  text-align:center;
+  font-weight:bold;
+  font-size:24px;
+  color:black;
+  margin-bottom:20px;
 }
 
 /* ================= GRID ================= */
-.publication-grid {
+.genially-grid {
   display:flex;
   flex-wrap:wrap;
   gap:20px;
   justify-content:center;
 }
 
-.publication-card {
+.genially-card {
   flex: 1 1 300px;
   max-width:350px;
   transition:0.3s;
 }
 
-.publication-card.expanded {
+.genially-card.expanded {
   flex: 1 1 100%;
   max-width:100%;
 }
 
 /* ================= FRONT ================= */
-.publication-card-front {
+.genially-card-front {
   position:relative;
   cursor:pointer;
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  transition:0.3s;
 }
 
-.publication-card-front img {
+.genially-card-front img {
   width:100%;
-  height:200px;
-  object-fit:cover;
   display:block;
-  transition: 0.3s;
-}
-
-.publication-card-front:hover img {
-  filter: grayscale(50%);
-  transform: scale(1.05);
 }
 
 .card-overlay {
   position:absolute;
   bottom:0;
   width:100%;
-  background: rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.6);
   color:white;
   padding:10px;
-  text-align:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:14px;
   opacity:0;
-  transition: opacity 0.3s;
+  transition:0.3s;
 }
 
-.publication-card-front:hover .card-overlay {
+.genially-card-front:hover {
+  filter: grayscale(60%);
+}
+
+.genially-card-front:hover .card-overlay {
   opacity:1;
 }
 
-/* Overlay text style */
-.card-overlay h3 {
-  margin:0;
-  font-size:16px;
-  font-weight:bold;
-}
-
-.card-overlay p {
-  margin:0;
-  font-size:14px;
-}
-
 /* ================= DETAIL ================= */
-.publication-detail {
+.genially-detail {
   display:none;
   background:white;
   padding:30px;
@@ -133,7 +107,7 @@ permalink: /publications/
   text-align:center;
 }
 
-.publication-card.expanded .publication-detail {
+.genially-card.expanded .genially-detail {
   display:block;
 }
 
@@ -146,7 +120,7 @@ permalink: /publications/
   gap:15px;
 }
 
-.publication-detail .button-wrapper a.card-btn {
+.genially-detail .button-wrapper a.card-btn {
   all: unset;
   display:inline-flex;
   align-items:center;
@@ -163,34 +137,29 @@ permalink: /publications/
   box-sizing:border-box;
 }
 
-.publication-detail .button-wrapper a.card-btn.secondary {
+.genially-detail .button-wrapper a.card-btn.secondary {
   background:#3b82f6;
 }
 
-.publication-detail .button-wrapper a.card-btn:hover {
+.genially-detail .button-wrapper a.card-btn:hover {
   opacity:0.9;
 }
 
 /* ================= MOBILE ================= */
 @media (max-width:768px) {
-
   #searchBox {
     width:90%;
   }
 
-  .publication-card {
+  .genially-card {
     flex:1 1 100%;
     max-width:100%;
   }
-
-  .publication-card-front img {
-    height:180px;
-  }
 }
+
 </style>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
-
 <script>
 fetch('/search.json')
   .then(response => response.json())
@@ -207,11 +176,10 @@ fetch('/search.json')
       const resultsContainer = document.getElementById('searchResults')
       resultsContainer.innerHTML = ""
       if(query === "") return
-
       const results = idx.search(query)
       results.forEach(result => {
         const originalCard = document.querySelector(
-          '.publication-card[data-url="' + result.ref + '"]'
+          '.genially-card[data-url="' + result.ref + '"]'
         )
         if(originalCard){
           const clone = originalCard.cloneNode(true)
@@ -223,61 +191,48 @@ fetch('/search.json')
     })
   })
 
-function toggleYear(element) {
-  const content = element.nextElementSibling;
-  content.classList.toggle("open");
-}
-
-function togglePublicationCard(element) {
-  const card = element.closest('.publication-card');
-  document.querySelectorAll('.publication-card').forEach(c => {
+function toggleCard(element) {
+  const card = element.closest('.genially-card');
+  document.querySelectorAll('.genially-card').forEach(c => {
     if (c !== card) c.classList.remove('expanded');
   });
-  card.classList.toggle('expanded');
+  card.classList.toggle("expanded");
 }
 </script>
 
 <section class="year-wrapper">
 
   <div class="year-block">
-    <div class="year-header" onclick="toggleYear(this)">
-      2025/2026
-    </div>
+    <div class="year-header">2025/2026</div>
+    <div class="genially-grid">
 
-    <div class="year-content">
-
-      <div class="publication-grid">
-
-        {% assign publications_sorted = site.publications | sort: 'date' | reverse %}
-
-        {% for pub in publications_sorted %}
-          {% if pub.year == "2025/2026" %}
-          <div class="publication-card" data-url="{{ pub.url }}">
-
-            <div class="publication-card-front" onclick="togglePublicationCard(this)">
-              <img src="{{ pub.image }}" alt="{{ pub.title }}">
+      {% assign sorted_publications = site.publications | sort: "date" | reverse %}
+      {% for item in sorted_publications %}
+        {% if item.year == "2025/2026" %}
+          <div class="genially-card" data-url="{{ item.url }}">
+            <div class="genially-card-front" onclick="toggleCard(this)">
+              <img src="{{ item.image }}" alt="{{ item.title }}">
               <div class="card-overlay">
-                <h3>{{ pub.title }}</h3>
-                <p>{{ pub.date }}</p>
+                <span>{{ item.title }}</span>
+                <span>{{ item.date }}</span>
               </div>
             </div>
-
-            <div class="publication-detail">
-              {{ pub.content }}
+            <div class="genially-detail">
+              {{ item.content }}
               <div class="button-wrapper">
-                {% for link in pub.links %}
-                  <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
-                    {{ link.name }}
-                  </a>
-                {% endfor %}
+                {% if item.links %}
+                  {% for link in item.links %}
+                    <a href="{{ link.url }}" target="_blank" class="card-btn {% if forloop.index > 1 %}secondary{% endif %}">
+                      📄 {{ link.name }}
+                    </a>
+                  {% endfor %}
+                {% endif %}
               </div>
             </div>
-
           </div>
-          {% endif %}
-        {% endfor %}
+        {% endif %}
+      {% endfor %}
 
-      </div>
     </div>
   </div>
 

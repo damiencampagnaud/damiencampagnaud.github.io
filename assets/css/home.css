@@ -633,3 +633,22 @@ h1, h2, h3 {
     padding-bottom: 40px !important;
   }
 }
+
+/* ================= HEADER RECENTRAGE PROPRE ================= */
+.custom-header {
+  display: flex;
+  align-items: center;      /* centrage vertical */
+  justify-content: center;  /* centrage horizontal */
+  text-align: center;
+  min-height: 300px;        /* hauteur stable desktop */
+  padding: 40px 20px;       /* espace équilibré */
+  box-sizing: border-box;
+}
+
+/* Mobile */
+@media (max-width:768px) {
+  .custom-header {
+    min-height: 220px;
+    padding: 30px 20px;
+  }
+}

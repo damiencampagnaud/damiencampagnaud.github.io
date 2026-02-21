@@ -6,28 +6,25 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 <style>
 /* ================= MOBILE ALIGN FIX ================= */
 @media (max-width:768px) {
-
   .home-genially-grid {
     display:flex !important;
     flex-direction:column !important;
     align-items:center !important;
   }
-
   .home-card {
     width:95% !important;
     margin:0 auto !important;
   }
-
 }
 </style>
 
 <main style="max-width:1400px; margin:0 auto; padding:40px;">
 
   <section class="genially-section">
-  <div class="genially-section-inner">
-    <h2>Accès rapide aux Genially</h2>
-  </div>
-</section>
+    <div class="genially-section-inner">
+      <h2>Accès rapide aux Genially</h2>
+    </div>
+  </section>
 
   <div class="home-genially-grid">
     {% for item in site.genially %}

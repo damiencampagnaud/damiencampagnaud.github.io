@@ -15,7 +15,5 @@ links:
     name: "📄 Règles du jeu"
     secondary: true
 ---
-
 Les éco-délégués de l'atelier D.D. vous présentent le jeu éco-responsable : **Exploding Planet !**
-
 ---

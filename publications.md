@@ -63,7 +63,7 @@ permalink: /publications/
 .publication-card {
   display:flex;
   gap:25px;
-  align-items:center; /* ✔ image centrée verticalement */
+  align-items:center;
   width:100%;
   margin-bottom:40px;
   transition:0.3s;
@@ -276,6 +276,7 @@ if(searchBox){
 
             // afficher la publication
             originalCard.style.display = 'flex';
+            originalCard.classList.remove('collapsed'); // ✅ vignette ouverte par défaut lors de recherche
           }
         });
 
@@ -299,8 +300,7 @@ if(searchBox){
     {% for item in sorted_publications %}
       {% if item.year == "2025/2026" %}
 
-        <div class="publication-card collapsed" data-url="{{ item.url }}">
-
+        <div class="publication-card" data-url="{{ item.url }}">
           <div class="publication-card-front" onclick="toggleCard(this)">
             <img src="{{ item.image }}" alt="{{ item.title }}">
             <div class="card-overlay">
@@ -343,8 +343,7 @@ if(searchBox){
     {% for item in sorted_publications %}
       {% if item.year == "2026/2027" %}
 
-        <div class="publication-card collapsed" data-url="{{ item.url }}">
-
+        <div class="publication-card" data-url="{{ item.url }}">
           <div class="publication-card-front" onclick="toggleCard(this)">
             <img src="{{ item.image }}" alt="{{ item.title }}">
             <div class="card-overlay">

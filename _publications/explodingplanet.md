@@ -16,7 +16,12 @@ links:
     secondary: true
 ---
 
-Les éco-délégués de l'atelier D.D. vous présentent le jeu éco-responsable : **Exploding Planet !**
+## <strong>Exploding Planet - 25/02/2026</strong>
 
+Les éco-délégués du collège de l’atelier D.D ont créé avec l’aide mon aide ainsi que Mme Chouteau et Mme El Hariri, un jeu de société éco-responsable nommé "Exploding Planet" basé sur les 17 objectifs du développement durable.
+
+Le but du jeu est simple mais dévastateur : éviter de piocher la carte « Exploding Planet » et ainsi empêcher la planète d’exploser. Pour cela, tout est permis (ou presque). Vous pouvez jouer des cartes éco-gestes, des cartes solidarité, des cartes D.D. et pleins d’autres en rapport avec les 17 objectifs du développement durable. Au total, nous avons créé 150 cartes qui vous garantirons des parties à rebondissements !
+
+J'ai ainsi le plaisir de vous informer que ce jeu a reçu un prix qui nous sera remis le mercredi 11 mars à l'Académie du Climat à Paris.
 
 ---

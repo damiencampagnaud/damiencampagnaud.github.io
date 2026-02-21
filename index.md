@@ -7,13 +7,15 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 /* ================= MOBILE ALIGN FIX ================= */
 @media (max-width:768px) {
 
-  .home-genially-grid {
+  .home-genially-grid,
+  .home-publication-grid { /* ajout pour la section publication */
     display:flex !important;
     flex-direction:column !important;
     align-items:center !important;
   }
 
-  .home-card {
+  .home-card,
+  .home-publication-card { /* ajout pour la publication */
     width:95% !important;
     margin:0 auto !important;
   }
@@ -23,11 +25,32 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 
 <main style="max-width:1400px; margin:0 auto; padding:40px;">
 
+  <!-- ================= PUBLICATION A LA UNE ================= -->
   <section class="genially-section">
-  <div class="genially-section-inner">
-    <h2>Accès rapide aux Genially</h2>
+    <div class="genially-section-inner">
+      <h2>Publication à la une</h2>
+    </div>
+  </section>
+
+  <div class="home-publication-grid">
+    {% assign latest_publication = site.publications | sort: "date" | reverse | first %}
+    {% if latest_publication %}
+      <a class="home-publication-card" href="{{ latest_publication.url }}">
+        <img src="{{ latest_publication.image }}" alt="{{ latest_publication.title }}">
+        <div class="home-card-overlay">
+          <h3>{{ latest_publication.title }}</h3>
+          <span>{{ latest_publication.date | date: "%d/%m/%Y" }}</span>
+        </div>
+      </a>
+    {% endif %}
   </div>
-</section>
+
+  <!-- ================= ACCES RAPIDE AUX GENIALLY ================= -->
+  <section class="genially-section">
+    <div class="genially-section-inner">
+      <h2>Accès rapide aux Genially</h2>
+    </div>
+  </section>
 
   <div class="home-genially-grid">
     {% for item in site.genially %}

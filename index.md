@@ -40,26 +40,30 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   <div class="home-publication-grid">
     {% assign latest_publication = site.publications | sort: "date" | reverse | first %}
     {% if latest_publication %}
-      <div class="home-publication-card publication-card collapsed" data-url="{{ latest_publication.url }}">
-        <div class="publication-card-front" onclick="this.closest('.publication-card').classList.toggle('collapsed')">
-          <img src="{{ latest_publication.image }}" alt="{{ latest_publication.title }}">
-          <div class="card-overlay">
-            <h3>{{ latest_publication.title }}</h3>
-            <span>{{ latest_publication.date | date: "%d/%m/%Y" }}</span>
-          </div>
-        </div>
+      <div class="home-publication-card year-block expanded">
+        <div class="year-content">
+          <div class="publication-card" data-url="{{ latest_publication.url }}">
+            <div class="publication-card-front">
+              <img src="{{ latest_publication.image }}" alt="{{ latest_publication.title }}">
+              <div class="card-overlay">
+                <h3>{{ latest_publication.title }}</h3>
+                <span>{{ latest_publication.date | date: "%d/%m/%Y" }}</span>
+              </div>
+            </div>
 
-        <div class="publication-detail">
-          {{ latest_publication.content }}
+            <div class="publication-detail">
+              {{ latest_publication.content }}
 
-          <div class="button-wrapper">
-            {% if latest_publication.links %}
-              {% for link in latest_publication.links %}
-                <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
-                  {{ link.name }}
-                </a>
-              {% endfor %}
-            {% endif %}
+              <div class="button-wrapper">
+                {% if latest_publication.links %}
+                  {% for link in latest_publication.links %}
+                    <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
+                      {{ link.name }}
+                    </a>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
           </div>
         </div>
       </div>

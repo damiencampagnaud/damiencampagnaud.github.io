@@ -10,7 +10,6 @@ permalink: /ressources/
 </section>
 
 <style>
-
 /* ================= SEARCH ================= */
 
 .search-section {
@@ -111,7 +110,7 @@ permalink: /ressources/
   display:block;
 }
 
-/* ================= BUTTONS (FIX CAYMAN PROPRE) ================= */
+/* ================= BUTTONS ================= */
 
 .button-wrapper {
   margin-top:20px;
@@ -121,7 +120,6 @@ permalink: /ressources/
   gap:15px;
 }
 
-/* On écrase totalement le style du thème Cayman */
 .genially-detail .button-wrapper a.card-btn {
   all: unset;
   display:inline-flex;
@@ -170,7 +168,6 @@ permalink: /ressources/
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 
 <script>
-
 fetch('/search-genially.json')
   .then(response => response.json())
   .then(data => {
@@ -232,7 +229,6 @@ function toggleCard(element) {
   card.classList.toggle("expanded");
 
 }
-
 </script>
 
 <section class="niveau-wrapper">
@@ -252,7 +248,8 @@ function toggleCard(element) {
       <div class="genially-grid">
 
       {% for item in site.genially %}
-        {% if item.niveau == niveau %}
+        {% assign item_niveau = item.niveau | strip %}
+        {% if item_niveau == niveau %}
 
           <div class="genially-card" data-url="{{ item.url }}">
 

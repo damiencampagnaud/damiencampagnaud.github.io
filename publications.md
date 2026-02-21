@@ -79,22 +79,18 @@ permalink: /publications/
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-}
-
-.publication-card-front:hover {
-  transform: translateY(-3px);
 }
 
 .publication-card-front img {
   width:100%;
-  height: 200px;
-  object-fit: cover;
+  height:200px;
+  object-fit:cover;
   display:block;
-  transition: transform 0.3s;
+  transition: 0.3s;
 }
 
 .publication-card-front:hover img {
+  filter: grayscale(50%);
   transform: scale(1.05);
 }
 
@@ -102,10 +98,28 @@ permalink: /publications/
   position:absolute;
   bottom:0;
   width:100%;
-  background:rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.6);
   color:white;
   padding:10px;
   text-align:center;
+  opacity:0;
+  transition: opacity 0.3s;
+}
+
+.publication-card-front:hover .card-overlay {
+  opacity:1;
+}
+
+/* Overlay text style */
+.card-overlay h3 {
+  margin:0;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.card-overlay p {
+  margin:0;
+  font-size:14px;
 }
 
 /* ================= DETAIL ================= */
@@ -244,6 +258,7 @@ function togglePublicationCard(element) {
               <img src="{{ pub.image }}" alt="{{ pub.title }}">
               <div class="card-overlay">
                 <h3>{{ pub.title }}</h3>
+                <p>{{ pub.date }}</p>
               </div>
             </div>
 

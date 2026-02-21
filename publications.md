@@ -12,7 +12,6 @@ permalink: /publications/
 <style>
 
 /* ================= SEARCH ================= */
-
 .search-section {
   text-align:center;
   margin-bottom:40px;
@@ -31,24 +30,16 @@ permalink: /publications/
   margin-top:30px;
 }
 
-/* ================= ANNEES ================= */
-
+/* ================= YEAR ================= */
 .year-header {
-  background:white;
-  padding:18px;
-  border-radius:12px;
-  cursor:pointer;
-  margin-bottom:15px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.08);
-}
-
-.year-content {
-  display:block; /* Toujours visible, pas de toggle comme les niveaux */
-  margin-bottom:40px;
+  text-align:center;
+  font-weight:bold;
+  font-size:24px;
+  color:black;
+  margin-bottom:20px;
 }
 
 /* ================= GRID ================= */
-
 .publication-grid {
   display:flex;
   flex-wrap:wrap;
@@ -68,7 +59,6 @@ permalink: /publications/
 }
 
 /* ================= FRONT ================= */
-
 .publication-card-front {
   position:relative;
   cursor:pointer;
@@ -82,21 +72,42 @@ permalink: /publications/
   display:block;
 }
 
+/* Overlay au hover */
 .card-overlay {
   position:absolute;
-  bottom:0;
+  top:0;
+  left:0;
   width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
   background:rgba(0,0,0,0.6);
   color:white;
+  opacity:0;
+  transition:0.3s;
+  text-align:center;
   padding:10px;
 }
 
-.publication-card-front:hover {
-  filter: grayscale(60%);
+.publication-card-front:hover .card-overlay {
+  opacity:1;
+}
+
+.card-overlay h3 {
+  font-weight:bold;
+  font-size:18px;
+  margin-bottom:5px;
+}
+
+.card-overlay p {
+  font-weight:normal;
+  font-size:14px;
+  margin:0;
 }
 
 /* ================= DETAIL ================= */
-
 .publication-detail {
   display:none;
   background:white;
@@ -112,7 +123,6 @@ permalink: /publications/
 }
 
 /* ================= BUTTONS ================= */
-
 .button-wrapper {
   margin-top:20px;
   display:flex;
@@ -121,7 +131,6 @@ permalink: /publications/
   gap:15px;
 }
 
-/* Style spécifique pour écraser Cayman */
 .publication-detail .button-wrapper a.card-btn {
   all: unset;
   display:inline-flex;
@@ -151,7 +160,6 @@ permalink: /publications/
 }
 
 /* ================= MOBILE ================= */
-
 @media (max-width:768px) {
   #searchBox {
     width:90%;
@@ -168,8 +176,6 @@ permalink: /publications/
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 
 <script>
-
-// Toggle carte
 function toggleCard(element) {
   const card = element.closest('.publication-card');
   document.querySelectorAll('.publication-card').forEach(c => {
@@ -209,7 +215,6 @@ fetch('/search.json')
       });
     });
   });
-
 </script>
 
 <section class="year-wrapper">
@@ -217,21 +222,14 @@ fetch('/search.json')
 {% assign years = "2025/2026" | split: "," %}
 
 {% for year in years %}
-
   <div class="year-block">
-
     <div class="year-header">{{ year }}</div>
-
     <div class="year-content">
-
       <div class="publication-grid">
-
       {% assign sorted_publications = site.publications | sort: "date" | reverse %}
       {% for item in sorted_publications %}
         {% if item.year == year %}
-
           <div class="publication-card" data-url="{{ item.url }}">
-
             <div class="publication-card-front" onclick="toggleCard(this)">
               <img src="{{ item.image }}" alt="{{ item.title }}">
               <div class="card-overlay">
@@ -239,31 +237,24 @@ fetch('/search.json')
                 <p>{{ item.date }}</p>
               </div>
             </div>
-
             <div class="publication-detail">
               {{ item.content }}
               <div class="button-wrapper">
                 {% if item.links %}
                   {% for link in item.links %}
-                    <a href="{{ link.url }}" target="_blank" class="card-btn {% if forloop.index > 1 %}secondary{% endif %}">
-                      {{ link.label }}
+                    <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
+                      {{ link.name }}
                     </a>
                   {% endfor %}
                 {% endif %}
               </div>
             </div>
-
           </div>
-
         {% endif %}
       {% endfor %}
-
       </div>
-
     </div>
-
   </div>
-
 {% endfor %}
 
 </section>

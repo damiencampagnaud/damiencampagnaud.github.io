@@ -47,12 +47,12 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 
 /* ================= RAPPORT SECTION/HEADER ================= */
 .genially-section:first-of-type {
-  margin-top: 20px; /* réduit l'espace au-dessus de la section sur desktop */
+  margin-top: 10px; /* réduit l'espace entre le header et la section */
 }
 
 @media (max-width:768px) {
   .genially-section:first-of-type {
-    margin-top: 10px; /* moins d'espace sur mobile */
+    margin-top: 5px; /* réduit également sur mobile */
   }
 }
 </style>

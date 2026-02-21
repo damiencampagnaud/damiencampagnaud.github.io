@@ -623,13 +623,13 @@ h1, h2, h3 {
 
 }
 
-/* ================= HEADER AVEC TA BANNIERE - FIX ESPACEMENT ================= */
+/* ================= ESPACE HEADER -> SECTION (40px) ================= */
 .custom-header {
-  padding: 3rem 1rem 4rem 1rem; /* réduit l'espace entre header et section */
+  padding-bottom: 40px !important;
 }
 
 @media (max-width:768px) {
   .custom-header {
-    padding: 2rem 1rem 3rem 1rem; /* réduit aussi sur mobile */
+    padding-bottom: 40px !important;
   }
 }

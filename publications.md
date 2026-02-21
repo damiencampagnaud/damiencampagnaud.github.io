@@ -6,12 +6,14 @@ permalink: /publications/
 
 <section class="search-section">
   <input type="text" id="searchBox" placeholder="Rechercher une publication...">
+  <div id="searchResults"></div>
 </section>
 
 <style>
 /* ================= SEARCH ================= */
 .search-section { text-align:center; margin-bottom:40px; }
 #searchBox { width:60%; max-width:500px; padding:12px; border-radius:8px; border:1px solid #ccc; font-size:16px; }
+#searchResults { margin-top:30px; }
 
 /* ================= YEAR TOGGLE ================= */
 .year-toggle { background:white; padding:18px; margin:40px 0 20px 0; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); cursor:pointer; text-align:center; font-weight:bold; font-size:24px; color:black; transition:0.3s; }
@@ -61,7 +63,7 @@ function toggleYear(element) {
   block.classList.toggle('expanded');
 }
 
-/* ================= SEARCH FIX ================= */
+/* ================= SEARCH ================= */
 const searchBox = document.getElementById('searchBox');
 if(searchBox){
   fetch('/search.json')
@@ -75,26 +77,25 @@ if(searchBox){
       });
 
       searchBox.addEventListener('input', function() {
-        const query = this.value.trim().toLowerCase();
+        const query = this.value.trim();
+        const allCards = document.querySelectorAll('.publication-card');
+        const allYears = document.querySelectorAll('.year-block');
 
-        // si vide, réaffiche tout et ferme pas les années
         if(query === ""){
-          document.querySelectorAll('.publication-card').forEach(c => c.style.display = 'flex');
+          // afficher tout
+          allCards.forEach(c => c.style.display = 'flex');
           return;
         }
 
-        // masquer toutes les publications
-        document.querySelectorAll('.publication-card').forEach(c => c.style.display = 'none');
+        // masquer tout
+        allCards.forEach(c => c.style.display = 'none');
 
-        // recherche
+        // rechercher
         const results = idx.search(query + "*");
-
         results.forEach(r => {
           const card = document.querySelector('.publication-card[data-url="' + r.ref + '"]');
           if(card){
             card.style.display = 'flex';
-
-            // ouvrir l'année
             const yearBlock = card.closest('.year-block');
             if(yearBlock) yearBlock.classList.add('expanded');
           }
@@ -104,8 +105,7 @@ if(searchBox){
 }
 </script>
 
-<!-- ================= PUBLICATIONS ================= -->
-
+<!-- ================= PUBLICATIONS 2025/2026 ================= -->
 <div class="year-block expanded">
   <div class="year-toggle" onclick="toggleYear(this)">2025/2026</div>
   <div class="year-content">
@@ -136,6 +136,7 @@ if(searchBox){
   </div>
 </div>
 
+<!-- ================= PUBLICATIONS 2026/2027 ================= -->
 <div class="year-block">
   <div class="year-toggle" onclick="toggleYear(this)">2026/2027</div>
   <div class="year-content">

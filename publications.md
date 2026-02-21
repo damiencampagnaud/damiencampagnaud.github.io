@@ -51,7 +51,7 @@ permalink: /publications/
 }
 
 .year-content {
-  display:block; /* ✔ vignettes ouvertes par défaut */
+  display:block; /* vignettes ouvertes par défaut */
 }
 
 .year-block.expanded .year-content {
@@ -204,16 +204,6 @@ permalink: /publications/
     width:100%;
   }
 
-  /* ================= FIX MOBILE POUR RECHERCHE ================= */
-  #searchResults .publication-card {
-    display: block !important;
-  }
-
-  #searchResults .publication-card .publication-card-front,
-  #searchResults .publication-card .publication-detail {
-    width: 100% !important;
-  }
-
 }
 
 </style>
@@ -284,8 +274,22 @@ if(searchBox){
               yearBlock.classList.add('expanded');
             }
 
-            // afficher la publication
-            originalCard.style.display = 'flex';
+            // cloner la carte pour injecter dans la recherche
+            const clone = originalCard.cloneNode(true);
+
+            // === FIX MOBILE : forcer colonne et 100% width pour les petits écrans ===
+            clone.style.display = 'flex';
+            if(window.innerWidth <= 768){
+              clone.style.flexDirection = 'column';
+              clone.querySelector('.publication-card-front').style.width = '100%';
+              clone.querySelector('.publication-detail').style.width = '100%';
+            } else {
+              clone.style.flexDirection = 'row';
+              clone.querySelector('.publication-card-front').style.width = '40%';
+              clone.querySelector('.publication-detail').style.width = '60%';
+            }
+
+            resultsContainer.appendChild(clone);
           }
         });
 

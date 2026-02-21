@@ -20,11 +20,11 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
     margin:0 auto !important;
   }
 
-  /* === FIX MOBILE pour publication à la une === */
   .home-publication-card .publication-card-front,
   .home-publication-card .publication-detail {
     width:100% !important;
   }
+
 }
 </style>
 
@@ -42,7 +42,7 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
     {% if latest_publication %}
       <div class="home-publication-card publication-card collapsed" data-url="{{ latest_publication.url }}">
 
-        <div class="publication-card-front" onclick="toggleCard(this)">
+        <div class="publication-card-front" onclick="this.closest('.publication-card').classList.toggle('collapsed')">
           <img src="{{ latest_publication.image }}" alt="{{ latest_publication.title }}">
           <div class="card-overlay">
             <h3>{{ latest_publication.title }}</h3>
@@ -88,11 +88,3 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   </div>
 
 </main>
-
-<script>
-/* ================= TOGGLE COLLAPSED PUBLICATION ================= */
-function toggleCard(element) {
-  const card = element.closest('.publication-card');
-  card.classList.toggle('collapsed');
-}
-</script>

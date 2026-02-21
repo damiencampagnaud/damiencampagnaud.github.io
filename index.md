@@ -15,16 +15,16 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   }
 
   .home-card,
-  .home-publication-card .publication-card {
+  .home-publication-card {
     width:95% !important;
     margin:0 auto !important;
   }
 
+  /* === FIX MOBILE pour publication à la une === */
   .home-publication-card .publication-card-front,
   .home-publication-card .publication-detail {
     width:100% !important;
   }
-
 }
 </style>
 
@@ -40,34 +40,28 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   <div class="home-publication-grid">
     {% assign latest_publication = site.publications | sort: "date" | reverse | first %}
     {% if latest_publication %}
-      <div class="home-publication-card">
+      <div class="home-publication-card publication-card collapsed" data-url="{{ latest_publication.url }}">
 
-        <div class="publication-card collapsed" data-url="{{ latest_publication.url }}">
-
-          <!-- IMAGE + OVERLAY -->
-          <div class="publication-card-front" onclick="this.closest('.publication-card').classList.toggle('collapsed')">
-            <img src="{{ latest_publication.image }}" alt="{{ latest_publication.title }}">
-            <div class="card-overlay">
-              <h3>{{ latest_publication.title }}</h3>
-              <span>{{ latest_publication.date | date: "%d/%m/%Y" }}</span>
-            </div>
+        <div class="publication-card-front" onclick="toggleCard(this)">
+          <img src="{{ latest_publication.image }}" alt="{{ latest_publication.title }}">
+          <div class="card-overlay">
+            <h3>{{ latest_publication.title }}</h3>
+            <span>{{ latest_publication.date | date: "%d/%m/%Y" }}</span>
           </div>
+        </div>
 
-          <!-- DETAIL -->
-          <div class="publication-detail">
-            {{ latest_publication.content }}
+        <div class="publication-detail">
+          {{ latest_publication.content }}
 
-            <div class="button-wrapper">
-              {% if latest_publication.links %}
-                {% for link in latest_publication.links %}
-                  <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
-                    {{ link.name }}
-                  </a>
-                {% endfor %}
-              {% endif %}
-            </div>
+          <div class="button-wrapper">
+            {% if latest_publication.links %}
+              {% for link in latest_publication.links %}
+                <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
+                  {{ link.name }}
+                </a>
+              {% endfor %}
+            {% endif %}
           </div>
-
         </div>
 
       </div>
@@ -94,3 +88,11 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   </div>
 
 </main>
+
+<script>
+/* ================= TOGGLE COLLAPSED PUBLICATION ================= */
+function toggleCard(element) {
+  const card = element.closest('.publication-card');
+  card.classList.toggle('collapsed');
+}
+</script>

@@ -61,20 +61,24 @@ permalink: /publications/
 /* ================= PUBLICATION LAYOUT ================= */
 
 .publication-card {
+  display:flex;
+  gap:25px;
+  align-items:flex-start;
   width:100%;
-  margin-bottom:30px;
+  margin-bottom:40px;
   transition:0.3s;
 }
 
-/* ================= FRONT ================= */
-
+/* vignette gauche quand ouvert */
 .publication-card-front {
+  width:40%;
+  min-width:280px;
+  height:250px;
   position:relative;
   cursor:pointer;
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  height:250px;
 }
 
 .publication-card-front img {
@@ -83,6 +87,33 @@ permalink: /publications/
   object-fit:cover;
   display:block;
 }
+
+/* contenu droite */
+.publication-detail {
+  width:60%;
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+/* ================= MODE COLLAPSED ================= */
+
+.publication-card.collapsed {
+  display:block;
+}
+
+.publication-card.collapsed .publication-card-front {
+  width:100%;
+  height:250px;
+}
+
+.publication-card.collapsed .publication-detail {
+  display:none;
+}
+
+/* ================= OVERLAY ================= */
 
 .card-overlay {
   position:absolute;
@@ -114,23 +145,6 @@ permalink: /publications/
 .card-overlay span {
   font-weight:normal;
   font-size:14px;
-}
-
-/* ================= DETAIL ================= */
-
-.publication-detail {
-  background:white;
-  padding:30px;
-  margin-top:15px;
-  border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.1);
-  text-align:center;
-}
-
-/* mode collapsed = réseau social */
-
-.publication-card.collapsed .publication-detail {
-  display:none;
 }
 
 /* ================= BUTTONS ================= */
@@ -171,9 +185,20 @@ permalink: /publications/
 /* ================= MOBILE ================= */
 
 @media (max-width:768px) {
+
   #searchBox {
     width:90%;
   }
+
+  .publication-card {
+    display:block;
+  }
+
+  .publication-card-front,
+  .publication-detail {
+    width:100%;
+  }
+
 }
 
 </style>
@@ -233,7 +258,6 @@ if(searchBox){
 <!-- =================== PUBLICATIONS 2025/2026 =================== -->
 
 <div class="year-block expanded">
-
   <div class="year-toggle" onclick="toggleYear(this)">
     2025/2026
   </div>
@@ -279,7 +303,6 @@ if(searchBox){
 <!-- =================== PUBLICATIONS 2026/2027 =================== -->
 
 <div class="year-block">
-
   <div class="year-toggle" onclick="toggleYear(this)">
     2026/2027
   </div>

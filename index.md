@@ -8,16 +8,21 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
 @media (max-width:768px) {
 
   .home-genially-grid,
-  .home-publication-grid { /* ajout pour la section publication */
+  .home-publication-grid {
     display:flex !important;
     flex-direction:column !important;
     align-items:center !important;
   }
 
   .home-card,
-  .home-publication-card { /* ajout pour la publication */
+  .home-publication-card {
     width:95% !important;
     margin:0 auto !important;
+  }
+
+  .home-publication-card .publication-card-front,
+  .home-publication-card .publication-detail {
+    width:100% !important;
   }
 
 }
@@ -35,13 +40,30 @@ title: "Damien CAMPAGNAUD - Créations Genially et ressources en SVT"
   <div class="home-publication-grid">
     {% assign latest_publication = site.publications | sort: "date" | reverse | first %}
     {% if latest_publication %}
-      <a class="home-publication-card" href="{{ latest_publication.url }}">
-        <img src="{{ latest_publication.image }}" alt="{{ latest_publication.title }}">
-        <div class="home-card-overlay">
-          <h3>{{ latest_publication.title }}</h3>
-          <span>{{ latest_publication.date | date: "%d/%m/%Y" }}</span>
+      <div class="home-publication-card publication-card" data-url="{{ latest_publication.url }}">
+        <!-- note: collapsed supprimé pour être ouvert par défaut -->
+        <div class="publication-card-front" onclick="this.closest('.publication-card').classList.toggle('collapsed')">
+          <img src="{{ latest_publication.image }}" alt="{{ latest_publication.title }}">
+          <div class="card-overlay">
+            <h3>{{ latest_publication.title }}</h3>
+            <span>{{ latest_publication.date | date: "%d/%m/%Y" }}</span>
+          </div>
         </div>
-      </a>
+
+        <div class="publication-detail">
+          {{ latest_publication.content }}
+
+          <div class="button-wrapper">
+            {% if latest_publication.links %}
+              {% for link in latest_publication.links %}
+                <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
+                  {{ link.name }}
+                </a>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
     {% endif %}
   </div>
 

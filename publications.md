@@ -11,8 +11,14 @@ permalink: /publications/
     <div id="searchResults"></div>
   </section>
 
-  <!-- CSS et JS pour toggle + recherche Lunr -->
-  {% include publications-style-js.html %}
+  <style>
+    /* Tout ton CSS ici (copier le CSS que tu avais dans publications.md) */
+  </style>
+
+  <script src="https://unpkg.com/lunr/lunr.js"></script>
+  <script>
+    /* Tout ton JS ici (copier le JS toggle et search que tu avais dans publications.md) */
+  </script>
 
   <div class="year-block">
     {% assign sorted_publications = site.publications | sort:"date" | reverse %}

@@ -63,7 +63,7 @@ permalink: /publications/
 .publication-card {
   display:flex;
   gap:25px;
-  align-items:flex-start;
+  align-items:center; /* ✔ image centrée verticalement */
   width:100%;
   margin-bottom:40px;
   transition:0.3s;
@@ -83,7 +83,7 @@ permalink: /publications/
 
 .publication-card-front img {
   width:100%;
-  height:auto; /* ratio original conservé */
+  height:auto;
   display:block;
 }
 
@@ -212,49 +212,75 @@ permalink: /publications/
 
 <script>
 
-/* ================= TOGGLE PUBLICATION ================= */
+/* ================= TOGGLES ================= */
 
 function toggleCard(element) {
   const card = element.closest('.publication-card');
   card.classList.toggle('collapsed');
 }
 
-/* ================= TOGGLE YEAR ================= */
-
 function toggleYear(element) {
   const block = element.closest('.year-block');
   block.classList.toggle('expanded');
 }
 
-/* ================= SEARCH ================= */
+/* ================= SEARCH CORRIGÉ ================= */
 
 const searchBox = document.getElementById('searchBox');
+
 if(searchBox){
   fetch('/search.json')
     .then(response => response.json())
     .then(data => {
+
       const idx = lunr(function () {
         this.ref('url');
         this.field('title');
         this.field('content');
+        this.metadataWhitelist = ['position'];
+
         data.forEach(doc => this.add(doc));
       });
 
       searchBox.addEventListener('input', function() {
+
         const query = this.value.trim();
         const resultsContainer = document.getElementById('searchResults');
         resultsContainer.innerHTML = "";
-        if(query === "") return;
-        const results = idx.search(query);
+
+        // reset affichage normal si champ vide
+        if(query === ""){
+          document.querySelectorAll('.publication-card').forEach(card => {
+            card.style.display = '';
+          });
+          return;
+        }
+
+        // masquer toutes les publications
+        document.querySelectorAll('.publication-card').forEach(card => {
+          card.style.display = 'none';
+        });
+
+        // recherche plus souple (multi mots)
+        const results = idx.search(query + "*");
+
         results.forEach(result => {
           const originalCard = document.querySelector('.publication-card[data-url="' + result.ref + '"]');
           if(originalCard){
-            const clone = originalCard.cloneNode(true);
-            clone.style.display = 'block';
-            resultsContainer.appendChild(clone);
+
+            // ouvrir l'année correspondante
+            const yearBlock = originalCard.closest('.year-block');
+            if(yearBlock){
+              yearBlock.classList.add('expanded');
+            }
+
+            // afficher la publication
+            originalCard.style.display = 'flex';
           }
         });
+
       });
+
     });
 }
 

@@ -5,19 +5,20 @@ permalink: /publications/
 ---
 
 <section class="search-section">
-  <input type="text" id="searchBox" placeholder="Rechercher une publication...">
-  <div id="searchResults"></div>
+  <input type="text" id="searchBoxPublication" placeholder="Rechercher une publication...">
+  <div id="searchResultsPublication"></div>
 </section>
 
 <style>
 
 /* ================= SEARCH ================= */
+
 .search-section {
   text-align:center;
   margin-bottom:40px;
 }
 
-#searchBox {
+#searchBoxPublication {
   width:60%;
   max-width:500px;
   padding:12px;
@@ -26,184 +27,105 @@ permalink: /publications/
   font-size:16px;
 }
 
-#searchResults {
+#searchResultsPublication {
   margin-top:30px;
 }
 
-/* ================= YEAR TOGGLE ================= */
+/* ================= ANNEES ================= */
 
-.year-toggle {
+.niveau-header {
   background:white;
   padding:18px;
-  margin:40px 0 20px 0;
   border-radius:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
   cursor:pointer;
+  margin-bottom:15px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
   text-align:center;
+}
+
+.niveau-header h2 {
+  margin:0;
   font-weight:bold;
-  font-size:24px;
   color:black;
-  transition:0.3s;
 }
 
-.year-toggle:hover {
-  background:#f5f5f5;
-}
-
-.year-content {
+.niveau-content {
   display:none;
+  margin-bottom:40px;
 }
 
-.year-block.expanded .year-content {
+.niveau-content.open {
   display:block;
 }
 
-/* ================= PUBLICATION LAYOUT ================= */
+/* ================= GRID ================= */
+
+.publication-grid {
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+  align-items:center;
+}
 
 .publication-card {
-  display:flex;
-  gap:25px;
-  align-items:center; /* ✔ image centrée verticalement */
   width:100%;
-  margin-bottom:40px;
+  max-width:900px;
   transition:0.3s;
 }
 
-/* ================= IMAGE MODE OUVERT ================= */
+.publication-card.expanded {
+  max-width:100%;
+}
 
-.publication-card-front {
-  width:40%;
-  min-width:280px;
+/* ================= FRONT ================= */
+
+.publication-front {
   position:relative;
   cursor:pointer;
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  text-align:center;
 }
 
-.publication-card-front img {
-  width:100%;
+.publication-front img {
+  max-width:100%;
   height:auto;
   display:block;
+  margin:auto;
+  transition:0.3s;
+}
+
+.publication-card:not(.expanded) .publication-front img {
+  width:100%;
+  height:250px;
+  object-fit:cover;
+}
+
+.publication-overlay {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  color:white;
+  padding:15px;
+  text-align:center;
 }
 
 /* ================= DETAIL ================= */
 
 .publication-detail {
-  width:60%;
+  display:none;
   background:white;
   padding:30px;
+  margin-top:15px;
   border-radius:12px;
   box-shadow:0 6px 18px rgba(0,0,0,0.1);
   text-align:center;
 }
 
-/* ================= MODE COLLAPSED ================= */
-
-.publication-card.collapsed {
+.publication-card.expanded .publication-detail {
   display:block;
-}
-
-.publication-card.collapsed .publication-card-front {
-  width:100%;
-  height:250px;
-}
-
-.publication-card.collapsed .publication-card-front img {
-  height:100%;
-  object-fit:cover;
-}
-
-.publication-card.collapsed .publication-detail {
-  display:none;
-}
-
-/* ================= OVERLAY ================= */
-
-.card-overlay {
-  position:absolute;
-  top:0;
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  background:rgba(0,0,0,0);
-  color:white;
-  opacity:0;
-  transition:0.3s;
-  text-align:center;
-  padding:10px;
-}
-
-.publication-card-front:hover .card-overlay {
-  opacity:1;
-  background:rgba(0,0,0,0.6);
-}
-
-.card-overlay h3 {
-  font-weight:bold;
-  margin:0 0 5px 0;
-}
-
-.card-overlay span {
-  font-weight:normal;
-  font-size:14px;
-}
-
-/* ================= BUTTONS ================= */
-
-.button-wrapper {
-  margin-top:20px;
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:15px;
-}
-
-.publication-detail .button-wrapper a.card-btn {
-  all: unset;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  height:44px;
-  padding:0 22px;
-  border-radius:8px;
-  background:#159957;
-  color:white;
-  font-weight:bold;
-  font-size:15px;
-  text-decoration:none;
-  cursor:pointer;
-  box-sizing:border-box;
-}
-
-.publication-detail .button-wrapper a.card-btn.secondary {
-  background:#3b82f6;
-}
-
-.publication-detail .button-wrapper a.card-btn:hover {
-  opacity:0.9;
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width:768px) {
-
-  #searchBox {
-    width:90%;
-  }
-
-  .publication-card {
-    display:block;
-  }
-
-  .publication-card-front,
-  .publication-detail {
-    width:100%;
-  }
-
 }
 
 </style>
@@ -212,165 +134,116 @@ permalink: /publications/
 
 <script>
 
-/* ================= TOGGLES ================= */
+fetch('/search.json')
+  .then(response => response.json())
+  .then(data => {
 
-function toggleCard(element) {
-  const card = element.closest('.publication-card');
-  card.classList.toggle('collapsed');
-}
+    const publicationData = data.filter(doc => doc.collection === "publications")
 
-function toggleYear(element) {
-  const block = element.closest('.year-block');
-  block.classList.toggle('expanded');
-}
+    const idx = lunr(function () {
+      this.ref('url')
+      this.field('title')
+      this.field('content')
+      publicationData.forEach(doc => this.add(doc))
+    })
 
-/* ================= SEARCH CORRIGÉ ================= */
+    document.getElementById('searchBoxPublication').addEventListener('input', function() {
 
-const searchBox = document.getElementById('searchBox');
+      const query = this.value.trim()
+      const resultsContainer = document.getElementById('searchResultsPublication')
+      resultsContainer.innerHTML = ""
 
-if(searchBox){
-  fetch('/search.json')
-    .then(response => response.json())
-    .then(data => {
+      if(query === "") return
 
-      const idx = lunr(function () {
-        this.ref('url');
-        this.field('title');
-        this.field('content');
-        this.metadataWhitelist = ['position'];
+      const results = idx.search(query)
 
-        data.forEach(doc => this.add(doc));
-      });
+      results.forEach(result => {
 
-      searchBox.addEventListener('input', function() {
+        const originalCard = document.querySelector(
+          '.publication-card[data-url="' + result.ref + '"]'
+        )
 
-        const query = this.value.trim();
-        const resultsContainer = document.getElementById('searchResults');
-        resultsContainer.innerHTML = "";
+        if(originalCard){
 
-        // reset affichage normal si champ vide
-        if(query === ""){
-          document.querySelectorAll('.publication-card').forEach(card => {
-            card.style.display = '';
-          });
-          return;
+          const clone = originalCard.cloneNode(true)
+          clone.classList.add("expanded")
+          clone.style.maxWidth = "100%"
+
+          resultsContainer.appendChild(clone)
+
         }
 
-        // masquer toutes les publications
-        document.querySelectorAll('.publication-card').forEach(card => {
-          card.style.display = 'none';
-        });
+      })
 
-        // recherche plus souple (multi mots)
-        const results = idx.search(query + "*");
+    })
 
-        results.forEach(result => {
-          const originalCard = document.querySelector('.publication-card[data-url="' + result.ref + '"]');
-          if(originalCard){
+  })
 
-            // ouvrir l'année correspondante
-            const yearBlock = originalCard.closest('.year-block');
-            if(yearBlock){
-              yearBlock.classList.add('expanded');
-            }
+function toggleNiveau(element) {
+  const content = element.nextElementSibling;
+  content.classList.toggle("open");
+}
 
-            // afficher la publication
-            originalCard.style.display = 'flex';
-          }
-        });
+function togglePublication(element) {
 
-      });
+  const card = element.closest('.publication-card');
 
-    });
+  document.querySelectorAll('.publication-card').forEach(c => {
+    if (c !== card) {
+      c.classList.remove('expanded');
+    }
+  });
+
+  card.classList.toggle("expanded");
+
 }
 
 </script>
 
-<!-- =================== PUBLICATIONS 2025/2026 =================== -->
+<section class="niveau-wrapper">
 
-<div class="year-block expanded">
-  <div class="year-toggle" onclick="toggleYear(this)">
-    2025/2026
-  </div>
+{% assign annees = site.publications | group_by_exp:"item","item.date | date: '%Y'" | sort: "name" | reverse %}
 
-  <div class="year-content">
+{% for annee in annees %}
 
-    {% assign sorted_publications = site.publications | sort: "date" | reverse %}
-    {% for item in sorted_publications %}
-      {% if item.year == "2025/2026" %}
+  <div class="niveau-block">
+
+    <div class="niveau-header" onclick="toggleNiveau(this)">
+      <h2>{{ annee.name }}</h2>
+    </div>
+
+    <div class="niveau-content {% if forloop.first %}open{% endif %}">
+
+      <div class="publication-grid">
+
+      {% assign sorted_posts = annee.items | sort: "date" | reverse %}
+
+      {% for item in sorted_posts %}
 
         <div class="publication-card" data-url="{{ item.url }}">
 
-          <div class="publication-card-front" onclick="toggleCard(this)">
+          <div class="publication-front" onclick="togglePublication(this)">
             <img src="{{ item.image }}" alt="{{ item.title }}">
-            <div class="card-overlay">
+            <div class="publication-overlay">
               <h3>{{ item.title }}</h3>
-              <span>{{ item.date | date: "%d/%m/%Y" }}</span>
+              <p>{{ item.date | date: "%d/%m/%Y" }}</p>
             </div>
           </div>
 
           <div class="publication-detail">
             {{ item.content }}
-
-            <div class="button-wrapper">
-              {% if item.links %}
-                {% for link in item.links %}
-                  <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
-                    {{ link.name }}
-                  </a>
-                {% endfor %}
-              {% endif %}
-            </div>
           </div>
 
         </div>
 
-      {% endif %}
-    {% endfor %}
+      {% endfor %}
+
+      </div>
+
+    </div>
 
   </div>
-</div>
 
-<!-- =================== PUBLICATIONS 2026/2027 =================== -->
+{% endfor %}
 
-<div class="year-block">
-  <div class="year-toggle" onclick="toggleYear(this)">
-    2026/2027
-  </div>
-
-  <div class="year-content">
-
-    {% for item in sorted_publications %}
-      {% if item.year == "2026/2027" %}
-
-        <div class="publication-card" data-url="{{ item.url }}">
-
-          <div class="publication-card-front" onclick="toggleCard(this)">
-            <img src="{{ item.image }}" alt="{{ item.title }}">
-            <div class="card-overlay">
-              <h3>{{ item.title }}</h3>
-              <span>{{ item.date | date: "%d/%m/%Y" }}</span>
-            </div>
-          </div>
-
-          <div class="publication-detail">
-            {{ item.content }}
-
-            <div class="button-wrapper">
-              {% if item.links %}
-                {% for link in item.links %}
-                  <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
-                    {{ link.name }}
-                  </a>
-                {% endfor %}
-              {% endif %}
-            </div>
-          </div>
-
-        </div>
-
-      {% endif %}
-    {% endfor %}
-
-  </div>
-</div>
+</section>

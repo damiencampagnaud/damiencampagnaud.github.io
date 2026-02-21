@@ -24,4 +24,8 @@ Le but du jeu est simple mais dévastateur : éviter de piocher la carte « Exp
 
 J'ai ainsi le plaisir de vous informer que ce jeu a reçu un prix qui nous sera remis le mercredi 11 mars à l'Académie du Climat à Paris.
 
+Grâce au soutien de la Cité Éducative de Colombes nous avons eu la joie de pouvoir produire 50 jeux par une entreprise spécialisée. Ces jeux seront distribués aux écoles du Réseau d'Éducation Prioritaire et à la Réussite Éducative de Colombes.
+
+En attendant, si vous voulez recréer le jeu vous même, vous trouverez ci-joint le PDF de toutes les cartes du jeu ainsi que les règles !
+
 ---

@@ -63,46 +63,45 @@ function toggleYear(element) {
   block.classList.toggle('expanded');
 }
 
-/* ================= SEARCH ================= */
-const searchBox = document.getElementById('searchBox');
-if(searchBox){
-  fetch('/search.json')
-    .then(response => response.json())
-    .then(data => {
-      const idx = lunr(function () {
-        this.ref('url');
-        this.field('title');
-        this.field('content');
-        data.forEach(doc => this.add(doc));
-      });
+/* ================= SEARCH STYLE RESSOURCES.MD ================= */
+fetch('/search.json')
+  .then(response => response.json())
+  .then(data => {
 
-      searchBox.addEventListener('input', function() {
-        const query = this.value.trim();
-        const allCards = document.querySelectorAll('.publication-card');
-        const allYears = document.querySelectorAll('.year-block');
+    const idx = lunr(function () {
+      this.ref('url');
+      this.field('title');
+      this.field('content');
+      data.forEach(doc => this.add(doc));
+    });
 
-        if(query === ""){
-          // afficher tout
-          allCards.forEach(c => c.style.display = 'flex');
-          return;
-        }
+    document.getElementById('searchBox').addEventListener('input', function() {
+      const query = this.value.trim();
+      const resultsContainer = document.getElementById('searchResults');
+      resultsContainer.innerHTML = "";
 
-        // masquer tout
-        allCards.forEach(c => c.style.display = 'none');
+      // si vide, on n’affiche rien dans le container
+      if(query === "") return;
 
-        // rechercher
-        const results = idx.search(query + "*");
-        results.forEach(r => {
-          const card = document.querySelector('.publication-card[data-url="' + r.ref + '"]');
-          if(card){
-            card.style.display = 'flex';
-            const yearBlock = card.closest('.year-block');
-            if(yearBlock) yearBlock.classList.add('expanded');
+      const results = idx.search(query + "*");
+
+      results.forEach(result => {
+        const originalCard = document.querySelector('.publication-card[data-url="' + result.ref + '"]');
+        if(originalCard){
+          const clone = originalCard.cloneNode(true);
+          clone.classList.add("collapsed"); // état miniature
+          clone.style.maxWidth = "100%";
+          resultsContainer.appendChild(clone);
+
+          // ouvrir automatiquement l'année de cette publication
+          const yearBlock = originalCard.closest('.year-block');
+          if(yearBlock){
+            yearBlock.classList.add('expanded');
           }
-        });
+        }
       });
     });
-}
+  });
 </script>
 
 <!-- ================= PUBLICATIONS 2025/2026 ================= -->

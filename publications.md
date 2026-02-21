@@ -30,72 +30,95 @@ permalink: /publications/
   margin-top:30px;
 }
 
-/* ================= YEAR HEADER ================= */
-.year-header {
+/* ================= YEAR TOGGLE ================= */
+
+.year-toggle {
+  background:white;
+  padding:18px;
+  margin:40px 0 20px 0;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  cursor:pointer;
   text-align:center;
   font-weight:bold;
   font-size:24px;
   color:black;
-  margin-bottom:20px;
-  cursor:pointer;
-  background:white;
-  padding:18px;
-  border-radius:12px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  transition:0.3s;
 }
 
-.year-header h2 {
-  margin:0;
+.year-toggle:hover {
+  background:#f5f5f5;
 }
 
-/* ================= GRID ================= */
-.publication-grid {
-  display:flex;
-  flex-direction:column;
-  gap:30px;
-  align-items:center;
+.year-content {
+  display:none;
 }
+
+.year-block.expanded .year-content {
+  display:block;
+}
+
+/* ================= PUBLICATION LAYOUT ================= */
 
 .publication-card {
   display:flex;
-  flex-direction:row;
+  gap:25px;
+  align-items:center; /* ✔ image centrée verticalement */
   width:100%;
-  max-width:900px;
+  margin-bottom:40px;
   transition:0.3s;
-  align-items:flex-start;
 }
 
-.publication-card.expanded {
-  flex-direction:column;
-  max-width:100%;
-  align-items:center;
-}
+/* ================= IMAGE MODE OUVERT ================= */
 
-/* ================= FRONT ================= */
 .publication-card-front {
+  width:40%;
+  min-width:280px;
   position:relative;
   cursor:pointer;
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  flex-shrink:0;
-  width:250px;
-  height:auto;
-  margin-right:20px;
-}
-
-.publication-card.expanded .publication-card-front {
-  width:100%;
-  margin-right:0;
-  height:auto;
 }
 
 .publication-card-front img {
   width:100%;
   height:auto;
   display:block;
+}
+
+/* ================= DETAIL ================= */
+
+.publication-detail {
+  width:60%;
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+/* ================= MODE COLLAPSED ================= */
+
+.publication-card.collapsed {
+  display:block;
+}
+
+.publication-card.collapsed .publication-card-front {
+  width:100%;
+  height:250px;
+}
+
+.publication-card.collapsed .publication-card-front img {
+  height:100%;
   object-fit:cover;
 }
+
+.publication-card.collapsed .publication-detail {
+  display:none;
+}
+
+/* ================= OVERLAY ================= */
 
 .card-overlay {
   position:absolute;
@@ -129,22 +152,8 @@ permalink: /publications/
   font-size:14px;
 }
 
-/* ================= DETAIL ================= */
-.publication-detail {
-  display:none;
-  background:white;
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.1);
-  text-align:center;
-  flex:1;
-}
-
-.publication-card.expanded .publication-detail {
-  display:block;
-}
-
 /* ================= BUTTONS ================= */
+
 .button-wrapper {
   margin-top:20px;
   display:flex;
@@ -179,20 +188,22 @@ permalink: /publications/
 }
 
 /* ================= MOBILE ================= */
+
 @media (max-width:768px) {
+
   #searchBox {
     width:90%;
   }
 
   .publication-card {
-    flex-direction:column;
-    align-items:center;
+    display:block;
   }
 
-  .publication-card-front {
+  .publication-card-front,
+  .publication-detail {
     width:100%;
-    margin-right:0;
   }
+
 }
 
 </style>
@@ -201,136 +212,165 @@ permalink: /publications/
 
 <script>
 
-// ================= SEARCH =================
-fetch('/search.json')
-  .then(response => response.json())
-  .then(data => {
-
-    const idx = lunr(function () {
-      this.ref('url')
-      this.field('title')
-      this.field('content')
-      data.forEach(doc => this.add(doc))
-    })
-
-    const searchBox = document.getElementById('searchBox')
-    const resultsContainer = document.getElementById('searchResults')
-
-    searchBox.addEventListener('input', function() {
-
-      const query = this.value.trim()
-      resultsContainer.innerHTML = ""
-
-      if(query === "") return
-
-      const results = idx.search(query)
-
-      results.forEach(result => {
-
-        const originalCard = document.querySelector(
-          '.publication-card[data-url="' + result.ref + '"]'
-        )
-
-        if(originalCard){
-
-          const clone = originalCard.cloneNode(true)
-          clone.classList.add("expanded")
-          clone.style.maxWidth = "100%"
-
-          resultsContainer.appendChild(clone)
-
-        }
-
-      })
-
-    })
-
-  })
-
-// ================= TOGGLE =================
-function toggleNiveau(element) {
-  const content = element.nextElementSibling;
-  content.classList.toggle("open");
-}
+/* ================= TOGGLES ================= */
 
 function toggleCard(element) {
   const card = element.closest('.publication-card');
-  card.classList.toggle("expanded");
+  card.classList.toggle('collapsed');
+}
 
-  // fermer les autres publications dans la même année
-  const parentGrid = card.closest('.publication-grid');
-  parentGrid.querySelectorAll('.publication-card').forEach(c => {
-    if(c !== card) c.classList.remove('expanded');
-  });
+function toggleYear(element) {
+  const block = element.closest('.year-block');
+  block.classList.toggle('expanded');
+}
+
+/* ================= SEARCH CORRIGÉ ================= */
+
+const searchBox = document.getElementById('searchBox');
+
+if(searchBox){
+  fetch('/search.json')
+    .then(response => response.json())
+    .then(data => {
+
+      const idx = lunr(function () {
+        this.ref('url');
+        this.field('title');
+        this.field('content');
+        this.metadataWhitelist = ['position'];
+
+        data.forEach(doc => this.add(doc));
+      });
+
+      searchBox.addEventListener('input', function() {
+
+        const query = this.value.trim();
+        const resultsContainer = document.getElementById('searchResults');
+        resultsContainer.innerHTML = "";
+
+        // reset affichage normal si champ vide
+        if(query === ""){
+          document.querySelectorAll('.publication-card').forEach(card => {
+            card.style.display = '';
+          });
+          return;
+        }
+
+        // masquer toutes les publications
+        document.querySelectorAll('.publication-card').forEach(card => {
+          card.style.display = 'none';
+        });
+
+        // recherche plus souple (multi mots)
+        const results = idx.search(query + "*");
+
+        results.forEach(result => {
+          const originalCard = document.querySelector('.publication-card[data-url="' + result.ref + '"]');
+          if(originalCard){
+
+            // ouvrir l'année correspondante
+            const yearBlock = originalCard.closest('.year-block');
+            if(yearBlock){
+              yearBlock.classList.add('expanded');
+            }
+
+            // afficher la publication
+            originalCard.style.display = 'flex';
+          }
+        });
+
+      });
+
+    });
 }
 
 </script>
 
 <!-- =================== PUBLICATIONS 2025/2026 =================== -->
-<div class="year-block">
-  <div class="year-header" onclick="toggleNiveau(this)"><h2>2025/2026</h2></div>
-  <div class="niveau-content open">
-    <div class="publication-grid">
-      {% assign sorted_publications = site.publications | sort: "date" | reverse %}
-      {% for item in sorted_publications %}
-        {% if item.year == "2025/2026" %}
-          <div class="publication-card" data-url="{{ item.url }}">
-            <div class="publication-card-front" onclick="toggleCard(this)">
-              <img src="{{ item.image }}" alt="{{ item.title }}">
-              <div class="card-overlay">
-                <h3>{{ item.title }}</h3>
-                <span>{{ item.date | date: "%d/%m/%Y" }}</span>
-              </div>
-            </div>
-            <div class="publication-detail">
-              {{ item.content }}
-              <div class="button-wrapper">
-                {% if item.links %}
-                  {% for link in item.links %}
-                    <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
-                      {{ link.name }}
-                    </a>
-                  {% endfor %}
-                {% endif %}
-              </div>
+
+<div class="year-block expanded">
+  <div class="year-toggle" onclick="toggleYear(this)">
+    2025/2026
+  </div>
+
+  <div class="year-content">
+
+    {% assign sorted_publications = site.publications | sort: "date" | reverse %}
+    {% for item in sorted_publications %}
+      {% if item.year == "2025/2026" %}
+
+        <div class="publication-card" data-url="{{ item.url }}">
+
+          <div class="publication-card-front" onclick="toggleCard(this)">
+            <img src="{{ item.image }}" alt="{{ item.title }}">
+            <div class="card-overlay">
+              <h3>{{ item.title }}</h3>
+              <span>{{ item.date | date: "%d/%m/%Y" }}</span>
             </div>
           </div>
-        {% endif %}
-      {% endfor %}
-    </div>
+
+          <div class="publication-detail">
+            {{ item.content }}
+
+            <div class="button-wrapper">
+              {% if item.links %}
+                {% for link in item.links %}
+                  <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
+                    {{ link.name }}
+                  </a>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+      {% endif %}
+    {% endfor %}
+
   </div>
 </div>
 
 <!-- =================== PUBLICATIONS 2026/2027 =================== -->
+
 <div class="year-block">
-  <div class="year-header" onclick="toggleNiveau(this)"><h2>2026/2027</h2></div>
-  <div class="niveau-content">
-    <div class="publication-grid">
-      {% for item in site.publications %}
-        {% if item.year == "2026/2027" %}
-          <div class="publication-card" data-url="{{ item.url }}">
-            <div class="publication-card-front" onclick="toggleCard(this)">
-              <img src="{{ item.image }}" alt="{{ item.title }}">
-              <div class="card-overlay">
-                <h3>{{ item.title }}</h3>
-                <span>{{ item.date | date: "%d/%m/%Y" }}</span>
-              </div>
-            </div>
-            <div class="publication-detail">
-              {{ item.content }}
-              <div class="button-wrapper">
-                {% if item.links %}
-                  {% for link in item.links %}
-                    <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
-                      {{ link.name }}
-                    </a>
-                  {% endfor %}
-                {% endif %}
-              </div>
+  <div class="year-toggle" onclick="toggleYear(this)">
+    2026/2027
+  </div>
+
+  <div class="year-content">
+
+    {% for item in sorted_publications %}
+      {% if item.year == "2026/2027" %}
+
+        <div class="publication-card" data-url="{{ item.url }}">
+
+          <div class="publication-card-front" onclick="toggleCard(this)">
+            <img src="{{ item.image }}" alt="{{ item.title }}">
+            <div class="card-overlay">
+              <h3>{{ item.title }}</h3>
+              <span>{{ item.date | date: "%d/%m/%Y" }}</span>
             </div>
           </div>
-        {% endif %}
-      {% endfor %}
-    </div>
+
+          <div class="publication-detail">
+            {{ item.content }}
+
+            <div class="button-wrapper">
+              {% if item.links %}
+                {% for link in item.links %}
+                  <a href="{{ link.url }}" target="_blank" class="card-btn {% if link.secondary %}secondary{% endif %}">
+                    {{ link.name }}
+                  </a>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+      {% endif %}
+    {% endfor %}
+
   </div>
 </div>

@@ -69,11 +69,11 @@ permalink: /publications/
   transition:0.3s;
 }
 
-/* vignette gauche quand ouvert */
+/* ================= IMAGE MODE OUVERT ================= */
+
 .publication-card-front {
   width:40%;
   min-width:280px;
-  height:250px;
   position:relative;
   cursor:pointer;
   border-radius:12px;
@@ -83,12 +83,12 @@ permalink: /publications/
 
 .publication-card-front img {
   width:100%;
-  height:100%;
-  object-fit:cover;
+  height:auto; /* ratio original conservé */
   display:block;
 }
 
-/* contenu droite */
+/* ================= DETAIL ================= */
+
 .publication-detail {
   width:60%;
   background:white;
@@ -107,6 +107,11 @@ permalink: /publications/
 .publication-card.collapsed .publication-card-front {
   width:100%;
   height:250px;
+}
+
+.publication-card.collapsed .publication-card-front img {
+  height:100%;
+  object-fit:cover;
 }
 
 .publication-card.collapsed .publication-detail {

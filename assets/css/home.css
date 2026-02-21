@@ -652,3 +652,20 @@ h1, h2, h3 {
     padding: 30px 20px;
   }
 }
+
+/* ================= FOOTER DEGRADE CAYMAN ================= */
+.site-footer {
+  background-image: linear-gradient(120deg, #155799, #159957);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 60px;
+}
+
+.site-footer a {
+  color: white;
+}
+
+.site-footer p {
+  margin: 0;
+}

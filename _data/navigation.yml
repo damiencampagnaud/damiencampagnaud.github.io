@@ -3,7 +3,5 @@ main:
     url: /
   - title: "Ressources"
     url: /ressources/
-  - title: "Publications"
-    url: /publications/
   - title: "Contact"
     url: /contact/

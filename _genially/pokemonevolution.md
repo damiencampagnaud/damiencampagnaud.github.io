@@ -11,7 +11,7 @@ layout: single
 
 ## <strong>Description</strong>
 
-L'élève se retrouve plongé dans le monde de Pokémon, il découvrira les similitudes avec notre monde mais surtout les différences. Il abordera alors les principes fondamentaux de la théorie de l'évolution Charles Darwin.
+L’élève est plongé dans l’univers de Pokémon. Il y découvre les similitudes avec notre monde, mais surtout les différences qui le distinguent. Cette immersion lui permet d’aborder les principes fondamentaux de la théorie de l’évolution développée par Charles Darwin.
 
 <strong>Durée :</strong> 1h
 

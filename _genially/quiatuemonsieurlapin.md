@@ -11,7 +11,7 @@ layout: single
 
 ## <strong>Description</strong>
 
-Une enquête pseudo-policière qui permet à l'élève d'aborder les notions de caryotype et d'anomalie chromosomique.
+Une enquête pseudo-policière sur le meurtre d'un lapin en peluche qui permet à l'élève d'aborder les notions de caryotype et d'anomalie chromosomique.
 
 <strong>Durée :</strong> 1h
 

@@ -13,7 +13,7 @@ layout: single
 
 ## <strong>Description</strong>
 
-Une enquête policière à réaliser en groupe. Les élèves devront découvrir qui est le meurtrier en réalisant des expériences et en analysant les éléments mis à leurs disposition.
+Une enquête policière à réaliser en groupe. Les élèves devront élucider le meurtre du chef de projet d'une entreprise en réalisant des expériences et en analysant les éléments mis à leurs disposition.
 
 <strong>Durée :</strong> 2h à 4h
 

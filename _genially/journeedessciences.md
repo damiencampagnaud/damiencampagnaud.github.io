@@ -13,7 +13,7 @@ layout: single
 
 ## <strong>Description</strong>
 
-Ceci est un Genially à destination des CM1-CM2 mais qui seront encadrés par des 6èmes. Chaque année, le collège Marguerite Duras propose aux écoles du réseau d'éducation prioritaire de passer un demi-journée au collège avec leurs classes pour que les élèves participent à un escape game sur le thème de l'eau. Les élèves devront aider une abeille à dépolluer son habitat en réalisant des activités et des manipulations associées aux matières scientifiques du collège : SVT, Physique-Chimie, Technologie et Mathématiques.
+Ce Genially est destiné aux élèves de CM1-CM2. Lors de la Journée des Sciences, ils seront encadrés par des élèves de 6e. Chaque année, le collège Marguerite Duras accueille les écoles du réseau d’éducation prioritaire pour une demi-journée immersive au sein de l’établissement. Les élèves participent à un escape game sur le thème de l’eau. Leur mission : aider une abeille à dépolluer son habitat. Pour y parvenir, ils devront résoudre des énigmes, réaliser des activités et effectuer des manipulations scientifiques en lien avec les différentes disciplines du collège : SVT, Physique-Chimie, Technologie et Mathématiques.
 
 <strong>Durée :</strong> 2-3h
 

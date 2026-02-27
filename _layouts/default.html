@@ -42,9 +42,11 @@
     <header class="custom-header">
       <div class="header-content">
 
-        <img src="{{ '/assets/images/Logoblanc.png' | relative_url }}" 
-             alt="Logo"
-             class="site-logo">
+        <a href="{{ '/' | relative_url }}" class="logo-link">
+  <img src="{{ '/assets/images/Logoblanc.png' | relative_url }}" 
+       alt="Logo"
+       class="site-logo">
+</a>
 
         <h1>{{ site.title }}</h1>
         <p>{{ site.description }}</p>

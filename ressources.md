@@ -63,6 +63,11 @@ permalink: /ressources/
   flex: 1 1 300px;
   max-width:350px;
   transition:0.3s;
+  position: relative; /* nécessaire pour overlay */
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  cursor:pointer;
 }
 
 .genially-card.expanded {
@@ -72,17 +77,14 @@ permalink: /ressources/
 
 /* ================= FRONT ================= */
 
-.genially-card-front {
-  position:relative;
-  cursor:pointer;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-}
-
 .genially-card-front img {
   width:100%;
   display:block;
+  transition: transform 0.3s ease;
+}
+
+.genially-card-front:hover img {
+  transform: scale(1.03); /* zoom léger comme index.md */
 }
 
 .card-overlay {
@@ -92,6 +94,11 @@ permalink: /ressources/
   background:rgba(0,0,0,0.6);
   color:white;
   padding:10px;
+  transition: background 0.3s ease;
+}
+
+.genially-card-front:hover .card-overlay {
+  background: rgba(0,0,0,0.45); /* effet hover identique à index.md */
 }
 
 /* ================= DETAIL ================= */
@@ -120,7 +127,7 @@ permalink: /ressources/
   gap:15px;
 }
 
-.genially-detail .button-wrapper a.card-btn {
+.button-wrapper a.card-btn {
   all: unset;
   display:inline-flex;
   align-items:center;
@@ -140,11 +147,11 @@ permalink: /ressources/
   box-sizing:border-box;
 }
 
-.genially-detail .button-wrapper a.card-btn.secondary {
+.button-wrapper a.card-btn.secondary {
   background:#3b82f6;
 }
 
-.genially-detail .button-wrapper a.card-btn:hover {
+.button-wrapper a.card-btn:hover {
   opacity:0.9;
 }
 
@@ -162,11 +169,9 @@ permalink: /ressources/
   }
 
 }
-
 </style>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
-
 <script>
 fetch('/search-genially.json')
   .then(response => response.json())
@@ -196,13 +201,10 @@ fetch('/search-genially.json')
         )
 
         if(originalCard){
-
           const clone = originalCard.cloneNode(true)
           clone.classList.add("expanded")
           clone.style.maxWidth = "100%"
-
           resultsContainer.appendChild(clone)
-
         }
 
       })
@@ -217,17 +219,13 @@ function toggleNiveau(element) {
 }
 
 function toggleCard(element) {
-
   const card = element.closest('.genially-card');
-
   document.querySelectorAll('.genially-card').forEach(c => {
     if (c !== card) {
       c.classList.remove('expanded');
     }
   });
-
   card.classList.toggle("expanded");
-
 }
 </script>
 

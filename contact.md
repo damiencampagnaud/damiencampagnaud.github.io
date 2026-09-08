@@ -55,11 +55,11 @@ permalink: /contact/
   </div>
 
   <a class="email-link" onclick="copyEmail('damien.campagnaud@gmail.com')">
-    damien.campagnaud@gmail.com
+    monsieurcampagnaud@gmail.com
   </a>
 
   <a class="email-link" onclick="copyEmail('damien.campagnaud@ac-versailles.fr')">
-    damien.campagnaud@ac-versailles.fr
+    damien.campagnaud@ac-bordeaux.fr
   </a>
 
   <div id="copyMessage" class="copy-message">
